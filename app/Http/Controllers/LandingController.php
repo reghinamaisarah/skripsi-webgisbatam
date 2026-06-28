@@ -6,6 +6,6 @@ class LandingController extends Controller
 {
     public function index()
     {
-        return "OK";
+        return 'HELLO RAILWAY';
     }
 }
