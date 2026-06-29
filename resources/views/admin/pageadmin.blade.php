@@ -19,7 +19,7 @@
     <button
         type="button"
         id="adminSidebarToggle"
-        class="fixed left-3 top-[70px] z-[180] hidden items-center gap-2 rounded-lg border border-[#e5e7eb] bg-white px-3 py-2 text-[0.76rem] font-semibold text-[#233d59] shadow-[0_4px_14px_rgba(15,23,42,0.08)] transition-colors duration-150 hover:bg-[#f8fafc] max-[900px]:inline-flex"
+        class="fixed left-3 top-[82px] z-[180] hidden items-center gap-2 rounded-lg border border-[#e5e7eb] bg-white px-3 py-2 text-[0.76rem] font-semibold text-[#233d59] shadow-[0_4px_14px_rgba(15,23,42,0.08)] transition-colors duration-150 hover:bg-[#f8fafc] max-[900px]:inline-flex"
         aria-label="Buka menu admin"
         aria-expanded="false"
     >

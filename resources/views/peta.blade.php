@@ -34,7 +34,8 @@
 </button>
 
 <div class="peta-wrapper mt-[60px] grid h-[calc(100vh-60px)] grid-cols-1 grid-rows-[1fr] md:grid-cols-[220px_1fr_260px] lg:grid-cols-[260px_1fr_300px] [&_.leaflet-control-zoom]:!overflow-hidden [&_.leaflet-control-zoom]:!rounded-[10px] [&_.leaflet-control-zoom]:!border-0 [&_.leaflet-control-zoom]:!shadow-[0_4px_16px_rgba(0,0,0,0.08),0_1px_4px_rgba(0,0,0,0.04)] [&_.leaflet-control-zoom]:!mb-20 md:[&_.leaflet-control-zoom]:!mb-2.5 [&_.leaflet-control-zoom_a]:!text-[16px] [&_.leaflet-control-zoom_a]:!leading-[30px] [&_.leaflet-popup-content-wrapper]:!overflow-hidden [&_.leaflet-popup-content-wrapper]:!rounded-[14px] [&_.leaflet-popup-content-wrapper]:!border [&_.leaflet-popup-content-wrapper]:!border-[#e4e3ea] [&_.leaflet-popup-content-wrapper]:!p-0 [&_.leaflet-popup-content-wrapper]:!shadow-[0_8px_32px_rgba(0,0,0,0.1),0_2px_8px_rgba(0,0,0,0.06)] [&_.leaflet-popup-content]:!m-0 [&_.leaflet-popup-content]:!w-auto [&_.leaflet-popup-tip-container]:!hidden [&_.leaflet-popup-close-button]:!right-2.5 [&_.leaflet-popup-close-button]:!top-2 [&_.leaflet-popup-close-button]:!h-5 [&_.leaflet-popup-close-button]:!w-5 [&_.leaflet-popup-close-button]:!text-[16px] [&_.leaflet-popup-close-button]:!leading-5 [&_.leaflet-popup-close-button]:!text-[#a8a7b8] [&_.lf-popup]:w-[180px] [&_.lf-popup]:break-words [&_.lf-popup]:p-[10px_12px] [&_.lf-popup]:font-['Poppins'] [&_.lf-popup]:text-[#18172b] [&_.lf-popup_b]:mb-[3px] [&_.lf-popup_b]:block [&_.lf-popup_b]:text-[0.75rem] [&_.lf-popup_b]:font-medium [&_.lf-popup_b]:leading-[1.35] [&_.lf-popup_small]:block [&_.lf-popup_small]:text-[0.67rem] [&_.lf-popup_small]:leading-[1.4] [&_.lf-popup_small]:text-[#a8a7b8] [&_.kw-popup]:w-[240px] [&_.kw-popup]:font-['Poppins'] [&_.kw-popup]:text-[#18172b] [&_.kw-popup-head]:border-b [&_.kw-popup-head]:border-[#e4e3ea] [&_.kw-popup-head]:bg-[#fafafa] [&_.kw-popup-head]:px-[13px] [&_.kw-popup-head]:pb-2.5 [&_.kw-popup-head]:pt-[11px] [&_.kw-popup-name]:mb-0.5 [&_.kw-popup-name]:pr-4 [&_.kw-popup-name]:text-[0.8rem] [&_.kw-popup-name]:font-medium [&_.kw-popup-name]:leading-[1.3] [&_.kw-popup-name]:text-[#18172b] [&_.kw-popup-lokasi]:flex [&_.kw-popup-lokasi]:items-center [&_.kw-popup-lokasi]:gap-[3px] [&_.kw-popup-lokasi]:text-[0.66rem] [&_.kw-popup-lokasi]:text-[#6b6a7d] [&_.kw-popup-body]:flex [&_.kw-popup-body]:flex-col [&_.kw-popup-body]:gap-2 [&_.kw-popup-body]:bg-white [&_.kw-popup-body]:p-[10px_13px] [&_.kw-popup-badge]:inline-flex [&_.kw-popup-badge]:items-center [&_.kw-popup-badge]:gap-1 [&_.kw-popup-badge]:rounded-full [&_.kw-popup-badge]:px-[9px] [&_.kw-popup-badge]:py-[3px] [&_.kw-popup-badge]:text-[0.64rem] [&_.kw-popup-badge]:font-normal [&_.kw-popup-badge.green]:bg-[#dcfce7] [&_.kw-popup-badge.green]:text-[#16a34a] [&_.kw-popup-badge.red]:bg-[#fee2e2] [&_.kw-popup-badge.red]:text-[#dc2626] [&_.kw-popup-meta]:grid [&_.kw-popup-meta]:grid-cols-2 [&_.kw-popup-meta]:gap-[5px] [&_.kw-popup-meta-item]:rounded-md [&_.kw-popup-meta-item]:bg-[#f4f3f8] [&_.kw-popup-meta-item]:px-2 [&_.kw-popup-meta-item]:py-1.5 [&_.kw-popup-meta-key]:mb-px [&_.kw-popup-meta-key]:text-[0.56rem] [&_.kw-popup-meta-key]:font-normal [&_.kw-popup-meta-key]:text-[#a8a7b8] [&_.kw-popup-meta-val]:text-[0.7rem] [&_.kw-popup-meta-val]:font-normal [&_.kw-popup-meta-val]:text-[#18172b] [&_.kw-popup-akses-title]:mb-1 [&_.kw-popup-akses-title]:text-[0.6rem] [&_.kw-popup-akses-title]:font-normal [&_.kw-popup-akses-title]:text-[#a8a7b8] [&_.kw-popup-akses-row]:flex [&_.kw-popup-akses-row]:items-center [&_.kw-popup-akses-row]:justify-between [&_.kw-popup-akses-row]:border-b [&_.kw-popup-akses-row]:border-[#e4e3ea] [&_.kw-popup-akses-row]:py-[5px] [&_.kw-popup-akses-row:last-child]:border-b-0 [&_.kw-popup-akses-row:last-child]:pb-0 [&_.kw-popup-akses-name]:text-[0.69rem] [&_.kw-popup-akses-name]:font-normal [&_.kw-popup-akses-name]:text-[#18172b] [&_.kw-popup-chip]:rounded-full [&_.kw-popup-chip]:px-[7px] [&_.kw-popup-chip]:py-0.5 [&_.kw-popup-chip]:text-[0.6rem] [&_.kw-popup-chip]:font-normal [&_.kw-popup-chip.ya]:bg-[#dcfce7] [&_.kw-popup-chip.ya]:text-[#16a34a] [&_.kw-popup-chip.not]:bg-[#fee2e2] [&_.kw-popup-chip.not]:text-[#dc2626] [&_.detail-name]:mb-0.5 [&_.detail-name]:text-[0.82rem] [&_.detail-name]:font-semibold [&_.detail-name]:leading-[1.3] [&_.detail-name]:text-[#18172b] [&_.detail-lokasi]:mb-2.5 [&_.detail-lokasi]:text-[0.68rem] [&_.detail-lokasi]:text-[#6b6a7d] [&_.detail-meta]:mb-2.5 [&_.detail-meta]:grid [&_.detail-meta]:grid-cols-2 [&_.detail-meta]:gap-1.5 [&_.detail-meta-item]:rounded-md [&_.detail-meta-item]:bg-[#f4f3f8] [&_.detail-meta-item]:px-[9px] [&_.detail-meta-item]:py-[7px] [&_.detail-meta-key]:mb-0.5 [&_.detail-meta-key]:text-[0.58rem] [&_.detail-meta-key]:font-normal [&_.detail-meta-key]:text-[#a8a7b8] [&_.detail-meta-val]:font-['Poppins'] [&_.detail-meta-val]:text-[0.73rem] [&_.detail-meta-val]:font-medium [&_.detail-meta-val]:text-[#18172b] [&_.detail-status-badge]:mb-2.5 [&_.detail-status-badge]:inline-flex [&_.detail-status-badge]:items-center [&_.detail-status-badge]:gap-1 [&_.detail-status-badge]:rounded-full [&_.detail-status-badge]:px-2.5 [&_.detail-status-badge]:py-[3px] [&_.detail-status-badge]:text-[0.67rem] [&_.detail-status-badge]:font-medium [&_.detail-status-badge.green]:bg-[#dcfce7] [&_.detail-status-badge.green]:text-[#16a34a] [&_.detail-status-badge.red]:bg-[#fee2e2] [&_.detail-status-badge.red]:text-[#dc2626] [&_.detail-status-badge_svg]:h-[11px] [&_.detail-status-badge_svg]:w-[11px] [&_.detail-status-badge_svg]:shrink-0 [&_.detail-status-badge_svg]:fill-none [&_.detail-status-badge_svg]:stroke-current [&_.detail-status-badge_svg]:stroke-[2.5] [&_.detail-status-badge_svg]:[stroke-linecap:round] [&_.detail-status-badge_svg]:[stroke-linejoin:round] [&_.detail-akses-title]:mb-1.5 [&_.detail-akses-title]:text-[0.62rem] [&_.detail-akses-title]:font-normal [&_.detail-akses-title]:text-[#a8a7b8] [&_.akses-row]:flex [&_.akses-row]:items-center [&_.akses-row]:justify-between [&_.akses-row]:border-b [&_.akses-row]:border-[#e4e3ea] [&_.akses-row]:py-1.5 [&_.akses-row:last-child]:border-b-0 [&_.akses-row:last-child]:pb-0 [&_.akses-row-left]:flex [&_.akses-row-left]:items-center [&_.akses-row-left]:gap-[7px] [&_.akses-name]:text-[0.71rem] [&_.akses-name]:font-normal [&_.akses-name]:text-[#18172b] [&_.akses-status-chip]:rounded-full [&_.akses-status-chip]:px-2 [&_.akses-status-chip]:py-0.5 [&_.akses-status-chip]:font-['Poppins'] [&_.akses-status-chip]:text-[0.62rem] [&_.akses-status-chip]:font-medium [&_.akses-status-chip.ya]:bg-[#dcfce7] [&_.akses-status-chip.ya]:text-[#16a34a] [&_.akses-status-chip.not]:bg-[#fee2e2] [&_.akses-status-chip.not]:text-[#dc2626]">
-    {{-- ══════════════════════════════════════════
+    
+{{-- ══════════════════════════════════════════
          LEFT SIDEBAR
     ══════════════════════════════════════════ --}}
     <aside class="sidebar-left fixed bottom-0 left-0 top-[60px] z-[1100] flex w-[280px] max-w-[85vw] -translate-x-full flex-col overflow-y-auto overflow-x-hidden border-r border-[#e4e3ea] bg-[#fafafa] shadow-[4px_0_24px_rgba(0,0,0,0.12)] transition-transform duration-200 ease-in-out [&.drawer-open]:translate-x-0 [&::-webkit-scrollbar]:w-[3px] [&::-webkit-scrollbar-thumb]:rounded-sm [&::-webkit-scrollbar-thumb]:bg-[#d0cfd8] md:static md:z-auto md:w-auto md:max-w-none md:translate-x-0 md:shadow-none md:transition-none">
@@ -162,6 +163,7 @@
             <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
             Terapkan Analisis
         </button>
+
     </aside>
 
     {{-- ══════════════════════════════════════════
@@ -170,34 +172,40 @@
     <div class="map-area relative overflow-hidden">
         <div id="map" class="h-full w-full"></div>
 
+        {{-- Cara Menggunakan Peta – floating button --}}
+        <button onclick="document.getElementById('modalCaraPenggunaan').classList.remove('hidden')" class="absolute right-3.5 top-3.5 z-[500] flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1.5 font-['Poppins'] text-[0.68rem] font-medium text-[#6b6a7d] shadow-[0_4px_16px_rgba(0,0,0,0.08),0_1px_4px_rgba(0,0,0,0.04)] backdrop-blur-md transition duration-[180ms] hover:bg-[#e8edff] hover:text-[#3b5bdb] active:scale-95 [&_svg]:h-3.5 [&_svg]:w-3.5 [&_svg]:shrink-0 [&_svg]:fill-none [&_svg]:stroke-current [&_svg]:stroke-2 [&_svg]:[stroke-linecap:round] [&_svg]:[stroke-linejoin:round]">
+            <svg viewBox="0 0 24 24" class="!stroke-[#f97316]"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            Cara Menggunakan Peta
+        </button>
 
 
-        <div class="map-legend absolute bottom-24 left-3.5 z-[500] min-w-[170px] md:bottom-6 rounded-[10px] bg-white/95 px-3.5 py-3 shadow-[0_4px_16px_rgba(0,0,0,0.08),0_1px_4px_rgba(0,0,0,0.04)] backdrop-blur-md">
-            <div class="legend-title mb-[9px] text-[0.68rem] font-normal tracking-[0.02em] text-[#a8a7b8]">Legenda</div>
-            <div class="legend-row mb-[5px] flex items-center gap-[9px] last:mb-0 [&_span]:text-[0.71rem] [&_span]:text-[#6b6a7d]">
-                <div class="ld h-[11px] w-[11px] shrink-0 rounded-full bg-[#22c55e]"></div>
+
+        <div class="map-legend absolute bottom-24 left-3.5 z-[500] min-w-[130px] md:min-w-[170px] md:bottom-6 rounded-[8px] md:rounded-[10px] bg-white/95 px-2.5 py-2 md:px-3.5 md:py-3 shadow-[0_4px_16px_rgba(0,0,0,0.08),0_1px_4px_rgba(0,0,0,0.04)] backdrop-blur-md">
+            <div class="legend-title mb-[6px] md:mb-[9px] text-[0.58rem] md:text-[0.68rem] font-normal tracking-[0.02em] text-[#a8a7b8]">Legenda</div>
+            <div class="legend-row mb-[4px] md:mb-[5px] flex items-center gap-[6px] md:gap-[9px] last:mb-0 [&_span]:text-[0.6rem] md:[&_span]:text-[0.71rem] [&_span]:text-[#6b6a7d]">
+                <div class="ld h-[9px] w-[9px] md:h-[11px] md:w-[11px] shrink-0 rounded-full bg-[#22c55e]"></div>
                 <span>Kawasan – Terjangkau</span>
             </div>
-            <div class="legend-row mb-[5px] flex items-center gap-[9px] last:mb-0 [&_span]:text-[0.71rem] [&_span]:text-[#6b6a7d]">
-                <div class="ld h-[11px] w-[11px] shrink-0 rounded-full bg-[#ef4444]"></div>
+            <div class="legend-row mb-[4px] md:mb-[5px] flex items-center gap-[6px] md:gap-[9px] last:mb-0 [&_span]:text-[0.6rem] md:[&_span]:text-[0.71rem] [&_span]:text-[#6b6a7d]">
+                <div class="ld h-[9px] w-[9px] md:h-[11px] md:w-[11px] shrink-0 rounded-full bg-[#ef4444]"></div>
                 <span>Kawasan – Tidak Terjangkau</span>
             </div>
-            <div class="legend-sep my-[7px] h-px bg-[#e4e3ea]"></div>
-            <div class="legend-row mb-[5px] flex items-center gap-[9px] last:mb-0 [&_span]:text-[0.71rem] [&_span]:text-[#6b6a7d]">
-                <div class="ls h-[11px] w-[11px] shrink-0 rotate-45 rounded-sm bg-[#7c3aed]"></div>
+            <div class="legend-sep my-[5px] md:my-[7px] h-px bg-[#e4e3ea]"></div>
+            <div class="legend-row mb-[4px] md:mb-[5px] flex items-center gap-[6px] md:gap-[9px] last:mb-0 [&_span]:text-[0.6rem] md:[&_span]:text-[0.71rem] [&_span]:text-[#6b6a7d]">
+                <div class="ls h-[9px] w-[9px] md:h-[11px] md:w-[11px] shrink-0 rotate-45 rounded-sm bg-[#7c3aed]"></div>
                 <span>Bandara</span>
             </div>
-            <div class="legend-row mb-[5px] flex items-center gap-[9px] last:mb-0 [&_span]:text-[0.71rem] [&_span]:text-[#6b6a7d]">
-                <div class="ls h-[11px] w-[11px] shrink-0 rounded-sm bg-[#0891b2]"></div>
+            <div class="legend-row mb-[4px] md:mb-[5px] flex items-center gap-[6px] md:gap-[9px] last:mb-0 [&_span]:text-[0.6rem] md:[&_span]:text-[0.71rem] [&_span]:text-[#6b6a7d]">
+                <div class="ls h-[9px] w-[9px] md:h-[11px] md:w-[11px] shrink-0 rounded-sm bg-[#0891b2]"></div>
                 <span>Pelabuhan</span>
             </div>
-            <div class="legend-row mb-[5px] flex items-center gap-[9px] last:mb-0 [&_span]:text-[0.71rem] [&_span]:text-[#6b6a7d]">
-                <div class="ll h-[2.5px] w-[22px] shrink-0 rounded-sm bg-[#6b7280]"></div>
+            <div class="legend-row mb-[4px] md:mb-[5px] flex items-center gap-[6px] md:gap-[9px] last:mb-0 [&_span]:text-[0.6rem] md:[&_span]:text-[0.71rem] [&_span]:text-[#6b6a7d]">
+                <div class="ll h-[2px] w-[18px] md:h-[2.5px] md:w-[22px] shrink-0 rounded-sm bg-[#6b7280]"></div>
                 <span>Jalan</span>
             </div>
-            <div class="legend-sep my-[7px] h-px bg-[#e4e3ea]"></div>
-            <div class="legend-row mb-[5px] flex items-center gap-[9px] last:mb-0 [&_span]:text-[0.71rem] [&_span]:text-[#6b6a7d]">
-                <div class="h-0 w-[22px] shrink-0 border-t-2 border-dashed border-[#8b6eb4]"></div>
+            <div class="legend-sep my-[5px] md:my-[7px] h-px bg-[#e4e3ea]"></div>
+            <div class="legend-row mb-[4px] md:mb-[5px] flex items-center gap-[6px] md:gap-[9px] last:mb-0 [&_span]:text-[0.6rem] md:[&_span]:text-[0.71rem] [&_span]:text-[#6b6a7d]">
+                <div class="h-0 w-[18px] md:w-[22px] shrink-0 border-t-2 border-dashed border-[#8b6eb4]"></div>
                 <span>Buffer Aktif</span>
             </div>
         </div>
@@ -812,23 +820,34 @@ document.querySelectorAll('.status-btn').forEach(btn => {
     });
 });
 
-/* Apply button → submit ke controller dengan GET */
+/* Apply button → validasi dulu, baru submit */
 document.getElementById('applyBtn').addEventListener('click', function() {
     const radiusInput = document.querySelector('#radiusGroup input[type="radio"]:checked');
     const radius = radiusInput ? radiusInput.value : null;
 
     const infra = [];
-    document.querySelectorAll('.infra-item input[type="checkbox"]:checked').forEach(cb => {
+    document.querySelectorAll('.infra-item input[type="checkbox"]:checked').forEach(function(cb) {
         infra.push(cb.value);
     });
 
     const status = document.getElementById('hiddenStatus').value;
 
-    const url = new URL(window.location.pathname, window.location.origin);
-    if (radius) url.searchParams.set('radius', radius);
-    infra.forEach(i => url.searchParams.append('infrastruktur[]', i));
-    if (status) url.searchParams.set('status', status);
+    const missing = [];
+    if (!radius)          missing.push('Radius buffer');
+    if (infra.length === 0) missing.push('Infrastruktur');
+    if (!status)          missing.push('Filter status');
 
+    if (missing.length > 0) {
+        document.getElementById('validasiMsg').textContent =
+            missing.join(', ') + ' belum dipilih.';
+        document.getElementById('modalValidasi').classList.remove('hidden');
+        return;
+    }
+
+    const url = new URL(window.location.pathname, window.location.origin);
+    url.searchParams.set('radius', radius);
+    infra.forEach(function(i) { url.searchParams.append('infrastruktur[]', i); });
+    url.searchParams.set('status', status);
     window.location.href = url.toString();
 });
 
@@ -876,5 +895,84 @@ document.getElementById('drawerOverlay').addEventListener('click', function() {
 
 @stack('scripts')
 
+{{-- ══════════════════════════════════════════
+     MODAL: VALIDASI PARAMETER
+══════════════════════════════════════════ --}}
+<div id="modalValidasi" class="hidden fixed inset-0 z-[2100] flex items-center justify-center p-4" onclick="if(event.target===this)document.getElementById('modalValidasi').classList.add('hidden')">
+    <div class="absolute inset-0 bg-black/60"></div>
+    <div class="relative z-10 w-full max-w-xs rounded-xl border border-[#e4e3ea] bg-white shadow-[0_8px_32px_rgba(0,0,0,0.12)] p-5 flex flex-col gap-3">
+        <div class="flex items-center gap-2.5">
+            <svg class="shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            <span class="text-[0.82rem] font-semibold text-[#18172b]">Parameter tidak lengkap</span>
+        </div>
+        <p id="validasiMsg" class="text-[0.73rem] leading-[1.55] text-[#6b6a7d] -mt-1"></p>
+        <button onclick="document.getElementById('modalValidasi').classList.add('hidden')" class="w-full rounded-[10px] bg-[#18172b] py-2 font-['Poppins'] text-[0.75rem] font-semibold text-white transition hover:bg-[#2d2b44] active:scale-[0.98]">
+            Lengkapi Parameter
+        </button>
+    </div>
+</div>
+
+{{-- ══════════════════════════════════════════
+     MODAL: CARA MENGGUNAKAN PETA
+══════════════════════════════════════════ --}}
+<div id="modalCaraPenggunaan" class="hidden fixed inset-0 z-[2000] flex items-center justify-center p-4" onclick="if(event.target===this)this.classList.add('hidden')">
+    {{-- Backdrop --}}
+    <div class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+
+    {{-- Modal card --}}
+    <div class="relative z-10 w-full max-w-md rounded-2xl border border-[#e4e3ea] bg-white shadow-[0_24px_64px_rgba(0,0,0,0.16),0_4px_16px_rgba(0,0,0,0.08)] flex flex-col max-h-[85vh]">
+
+        {{-- Header --}}
+        <div class="shrink-0 flex items-center justify-between border-b border-[#e4e3ea] px-5 py-4">
+            <div>
+                <div class="text-[0.6rem] font-normal tracking-[0.02em] text-[#a8a7b8] mb-0.5">Panduan</div>
+                <div class="text-[0.88rem] font-semibold text-[#18172b] leading-none">Cara Menggunakan Peta</div>
+            </div>
+            <button onclick="document.getElementById('modalCaraPenggunaan').classList.add('hidden')" class="flex h-7 w-7 items-center justify-center rounded-full border border-[#e4e3ea] bg-[#fafafa] text-[#a8a7b8] transition hover:bg-[#f4f3f8] hover:text-[#18172b] active:scale-95">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+        </div>
+
+        {{-- Body scrollable --}}
+        <div class="overflow-y-auto px-5 py-4 flex flex-col gap-3 [&::-webkit-scrollbar]:w-[3px] [&::-webkit-scrollbar-thumb]:rounded-sm [&::-webkit-scrollbar-thumb]:bg-[#d0cfd8]">
+            @php
+            $steps = [
+                ['num' => '1', 'text' => 'Pilih <strong>radius buffer</strong> 1 km, 3 km, atau 5 km pada panel Parameter Analisis.'],
+                ['num' => '2', 'text' => 'Pilih <strong>infrastruktur pendukung</strong> yang ingin dianalisis. Dapat memilih satu, dua, atau semua infrastruktur, yaitu jalan, pelabuhan, dan bandara.'],
+                ['num' => '3', 'text' => 'Pilih <strong>filter status</strong> untuk menampilkan semua kawasan, kawasan terjangkau, atau kawasan tidak terjangkau.'],
+                ['num' => '4', 'text' => 'Atur <strong>layer peta</strong> yang ingin ditampilkan, seperti kawasan industri, buffer analisis, jalan, pelabuhan, bandara, dan wilayah administrasi.'],
+                ['num' => '5', 'text' => 'Klik tombol <strong>Terapkan Analisis</strong> untuk menampilkan hasil analisis pada peta.'],
+                ['num' => '6', 'text' => 'Lihat hasil analisis dan detail informasi kawasan pada <strong>Panel Ringkasan</strong>. Klik marker kawasan industri untuk melihat radius buffer pada peta.'],
+                ['num' => '7', 'text' => 'Marker <span class="inline-flex items-center gap-1"><span class="inline-block h-2 w-2 rounded-full bg-[#22c55e]"></span><strong class="text-[#16a34a]">hijau</strong></span> menunjukkan kawasan terjangkau, sedangkan marker <span class="inline-flex items-center gap-1"><span class="inline-block h-2 w-2 rounded-full bg-[#ef4444]"></span><strong class="text-[#dc2626]">merah</strong></span> menunjukkan kawasan tidak terjangkau.'],
+            ];
+            @endphp
+
+            @foreach($steps as $step)
+            <div class="flex gap-3 items-start">
+                <div class="shrink-0 h-6 w-6 rounded-full bg-[rgba(59,91,219,0.1)] flex items-center justify-center text-[0.64rem] font-semibold text-[#3b5bdb] leading-none mt-px">{{ $step['num'] }}</div>
+                <p class="text-[0.73rem] leading-[1.55] text-[#18172b] flex-1">{!! $step['text'] !!}</p>
+            </div>
+            @endforeach
+        </div>
+
+        {{-- Footer --}}
+        <div class="shrink-0 border-t border-[#e4e3ea] px-5 py-3">
+            <button onclick="document.getElementById('modalCaraPenggunaan').classList.add('hidden')" class="w-full rounded-[10px] bg-[#3b5bdb] py-2 font-['Poppins'] text-[0.75rem] font-semibold text-white transition hover:bg-[#2f4ac4] active:scale-[0.98]">
+                Mengerti
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        document.getElementById('modalCaraPenggunaan').classList.add('hidden');
+        tutupModalValidasi();
+    }
+});
+</script>
 </body>
 </html>
