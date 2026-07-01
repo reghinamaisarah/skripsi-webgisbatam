@@ -159,10 +159,16 @@
         {{-- Hidden input status --}}
         <input type="hidden" id="hiddenStatus" value="{{ $statusFilter }}">
 
-        <button class="apply-btn mx-3.5 my-2.5 flex cursor-pointer items-center justify-center gap-1.5 rounded-[10px] border-0 bg-[#3b5bdb] p-2 font-['Poppins'] text-[0.75rem] font-semibold text-white transition duration-[180ms] hover:bg-[#2f4ac4] active:scale-[0.98] [&_svg]:h-3.5 [&_svg]:w-3.5 [&_svg]:fill-none [&_svg]:stroke-white [&_svg]:stroke-[2.5] [&_svg]:[stroke-linecap:round] [&_svg]:[stroke-linejoin:round]" id="applyBtn">
-            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-            Terapkan Analisis
-        </button>
+        <div class="apply-btn-group mx-3.5 my-2.5 flex flex-wrap gap-2">
+            <button class="reset-btn flex min-w-[84px] flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-[10px] border-[1.5px] border-[#e4e3ea] bg-white p-2 font-['Poppins'] text-[0.75rem] font-semibold text-[#6b6a7d] transition duration-[180ms] hover:border-[#d0cfd8] hover:bg-[#f4f3f8] active:scale-[0.98] [&_svg]:h-3.5 [&_svg]:w-3.5 [&_svg]:fill-none [&_svg]:stroke-[#6b6a7d] [&_svg]:stroke-[2.5] [&_svg]:[stroke-linecap:round] [&_svg]:[stroke-linejoin:round]" id="resetBtn" type="button" aria-label="Kosongkan pilihan parameter">
+                <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-9.36L1 10"/></svg>
+                Reset
+            </button>
+            <button class="apply-btn flex min-w-[140px] flex-[2] cursor-pointer items-center justify-center gap-1.5 rounded-[10px] border-0 bg-[#3b5bdb] p-2 font-['Poppins'] text-[0.75rem] font-semibold text-white transition duration-[180ms] hover:bg-[#2f4ac4] active:scale-[0.98] [&_svg]:h-3.5 [&_svg]:w-3.5 [&_svg]:fill-none [&_svg]:stroke-white [&_svg]:stroke-[2.5] [&_svg]:[stroke-linecap:round] [&_svg]:[stroke-linejoin:round]" id="applyBtn" type="button">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                Terapkan Analisis
+            </button>
+        </div>
 
     </aside>
 
@@ -180,7 +186,7 @@
 
 
 
-        <div class="map-legend absolute bottom-24 left-3.5 z-[500] min-w-[130px] md:min-w-[170px] md:bottom-6 rounded-[8px] md:rounded-[10px] bg-white/95 px-2.5 py-2 md:px-3.5 md:py-3 shadow-[0_4px_16px_rgba(0,0,0,0.08),0_1px_4px_rgba(0,0,0,0.04)] backdrop-blur-md">
+        <div class="map-legend absolute bottom-32 left-3.5 z-[500] min-w-[130px] md:min-w-[170px] md:bottom-6 rounded-[8px] md:rounded-[10px] bg-white/95 px-2.5 py-2 md:px-3.5 md:py-3 shadow-[0_4px_16px_rgba(0,0,0,0.08),0_1px_4px_rgba(0,0,0,0.04)] backdrop-blur-md">
             <div class="legend-title mb-[6px] md:mb-[9px] text-[0.58rem] md:text-[0.68rem] font-normal tracking-[0.02em] text-[#a8a7b8]">Legenda</div>
             <div class="legend-row mb-[4px] md:mb-[5px] flex items-center gap-[6px] md:gap-[9px] last:mb-0 [&_span]:text-[0.6rem] md:[&_span]:text-[0.71rem] [&_span]:text-[#6b6a7d]">
                 <div class="ld h-[9px] w-[9px] md:h-[11px] md:w-[11px] shrink-0 rounded-full bg-[#22c55e]"></div>
@@ -849,6 +855,30 @@ document.getElementById('applyBtn').addEventListener('click', function() {
     infra.forEach(function(i) { url.searchParams.append('infrastruktur[]', i); });
     url.searchParams.set('status', status);
     window.location.href = url.toString();
+});
+
+/* Reset button → kosongkan semua pilihan tanpa reload halaman */
+document.getElementById('resetBtn').addEventListener('click', function() {
+    // Radius
+    document.querySelectorAll('#radiusGroup .radius-option').forEach(function(opt) {
+        opt.classList.remove('active');
+        opt.querySelector('input[type="radio"]').checked = false;
+    });
+
+    // Infrastruktur
+    document.querySelectorAll('.infra-item').forEach(function(item) {
+        item.classList.remove('active');
+        item.querySelector('input[type="checkbox"]').checked = false;
+    });
+
+    // Status
+    document.querySelectorAll('.status-btn').forEach(function(btn) {
+        btn.classList.remove('active-all', 'active-green', 'active-red');
+    });
+    document.getElementById('hiddenStatus').value = '';
+
+    // Tutup pesan validasi kalau sedang terbuka
+    document.getElementById('modalValidasi').classList.add('hidden');
 });
 
 /* ══════════════════════════════════════════
