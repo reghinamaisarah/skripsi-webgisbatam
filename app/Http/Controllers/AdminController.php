@@ -89,7 +89,7 @@ class AdminController extends Controller
         return $row->kode_kec ?? null;
     }
 
-    # KAWASAN INDUSTRI
+    // Kawasan Industri
     public function storeKawasan(Request $request)
     {
         $data = $request->only([
@@ -139,7 +139,7 @@ class AdminController extends Controller
         ])->with('success', 'Data kawasan berhasil dihapus.');
     }
 
-    # PELABUHAN
+    // Pelabuhan
     public function storePelabuhan(Request $request)
     {
         $data = $request->only([
@@ -186,7 +186,7 @@ class AdminController extends Controller
         ])->with('success', 'Data pelabuhan berhasil dihapus.');
     }
 
-    # BANDARA
+    // Bandara
     public function storeBandara(Request $request)
     {
         $data = $request->only([
@@ -231,7 +231,7 @@ class AdminController extends Controller
         ])->with('success', 'Data bandara berhasil dihapus.');
     }
 
-    # JALAN
+    // Jalan
     public function storeJalan(Request $request)
     {
         Jalan::create($request->all());

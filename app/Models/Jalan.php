@@ -17,13 +17,13 @@ class Jalan extends Model
 
     public $timestamps = false;
 
-    // Normalisasi nama jalan.
+    // Normalisasi nama jalan
     private static function normalizedRoadNameExpression(): string
     {
         return 'LOWER(TRIM(nama_jalan))';
     }
 
-    // Filter dasar untuk mengambil data jalan yang layak ditampilkan
+    // Filter untuk mengambil data jalan yang ditampilkan
     public function scopeValidForDisplay(Builder $query): Builder
     {
         return $query
@@ -33,7 +33,7 @@ class Jalan extends Model
             ->whereRaw("LTRIM(nama_jalan) NOT LIKE ?", ['[%']);
     }
 
-    //  Mengambil daftar nama jalan unik yang layak ditampilkan.
+    //  Mengambil daftar nama jalan unik yang ditampilkan
     public function scopeForDisplay(Builder $query): Builder
     {
         $normalizedName = self::normalizedRoadNameExpression();
@@ -49,7 +49,7 @@ class Jalan extends Model
             ->orderBy('nama_jalan', 'asc');
     }
 
-    // Menghitung jumlah nama jalan unik yang terpetakan.
+    // Menghitung jumlah nama jalan unik yang terpetakan
     public static function countMappedRoads(): int
     {
         $normalizedName = self::normalizedRoadNameExpression();

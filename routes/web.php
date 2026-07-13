@@ -11,7 +11,6 @@ use App\Http\Controllers\AdminController;
 // Landing Page
 Route::get('/', [\App\Http\Controllers\LandingController::class, 'index'])->name('landing');
 
-
 // Peta WebGIS
 Route::get('/peta', [PetaController::class, 'index'])
     ->name('peta.index');
@@ -54,7 +53,6 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::delete('/kawasan/{id}', [AdminController::class, 'deleteKawasan'])
         ->name('admin.kawasan.delete');
 
-
     // CRUD Pelabuhan
     Route::post('/pelabuhan', [AdminController::class, 'storePelabuhan'])
         ->name('admin.pelabuhan.store');
@@ -65,7 +63,6 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::delete('/pelabuhan/{id}', [AdminController::class, 'deletePelabuhan'])
         ->name('admin.pelabuhan.delete');
 
-
     // CRUD Bandara
     Route::post('/bandara', [AdminController::class, 'storeBandara'])
         ->name('admin.bandara.store');
@@ -75,7 +72,6 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
     Route::delete('/bandara/{id}', [AdminController::class, 'deleteBandara'])
         ->name('admin.bandara.delete');
-
 
     // CRUD Jalan
     Route::post('/jalan', [AdminController::class, 'storeJalan'])

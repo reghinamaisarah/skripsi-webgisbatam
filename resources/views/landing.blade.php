@@ -14,7 +14,6 @@
 
 @push('scripts')
 <script>
-    {{-- Scroll fade-in untuk semua elemen .fade-up --}}
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry, i) => {
             if (entry.isIntersecting) {
@@ -28,7 +27,6 @@
 
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-    {{-- Smooth scroll untuk anchor link --}}
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();

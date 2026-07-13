@@ -18,7 +18,7 @@
     $hasApplied = $hasApplied ?? false;
 @endphp
 
-{{-- ── Mobile: overlay & tombol toggle ── --}}
+{{-- Mobile overlay & toggle --}}
 <div class="drawer-overlay fixed inset-x-0 bottom-0 top-[60px] z-[1099] hidden bg-black/35 [&.active]:block md:hidden" id="drawerOverlay" onclick="closeAllDrawers()"></div>
 
 <button class="mobile-fab-left fixed bottom-6 left-4 z-[1050] flex items-center gap-1.5 rounded-full bg-white px-3.5 py-2 text-[0.7rem] font-semibold text-[#18172b] shadow-[0_4px_16px_rgba(0,0,0,0.14)] transition-all duration-200 active:scale-95 md:hidden"
@@ -35,9 +35,7 @@
 
 <div class="peta-wrapper mt-[60px] grid h-[calc(100vh-60px)] grid-cols-1 grid-rows-[1fr] md:grid-cols-[220px_1fr_260px] lg:grid-cols-[260px_1fr_300px] [&_.leaflet-control-zoom]:!overflow-hidden [&_.leaflet-control-zoom]:!rounded-[10px] [&_.leaflet-control-zoom]:!border-0 [&_.leaflet-control-zoom]:!shadow-[0_4px_16px_rgba(0,0,0,0.08),0_1px_4px_rgba(0,0,0,0.04)] [&_.leaflet-control-zoom]:!mb-20 md:[&_.leaflet-control-zoom]:!mb-2.5 [&_.leaflet-control-zoom_a]:!text-[16px] [&_.leaflet-control-zoom_a]:!leading-[30px] [&_.leaflet-popup-content-wrapper]:!overflow-hidden [&_.leaflet-popup-content-wrapper]:!rounded-[14px] [&_.leaflet-popup-content-wrapper]:!border [&_.leaflet-popup-content-wrapper]:!border-[#e4e3ea] [&_.leaflet-popup-content-wrapper]:!p-0 [&_.leaflet-popup-content-wrapper]:!shadow-[0_8px_32px_rgba(0,0,0,0.1),0_2px_8px_rgba(0,0,0,0.06)] [&_.leaflet-popup-content]:!m-0 [&_.leaflet-popup-content]:!w-auto [&_.leaflet-popup-tip-container]:!hidden [&_.leaflet-popup-close-button]:!right-2.5 [&_.leaflet-popup-close-button]:!top-2 [&_.leaflet-popup-close-button]:!h-5 [&_.leaflet-popup-close-button]:!w-5 [&_.leaflet-popup-close-button]:!text-[16px] [&_.leaflet-popup-close-button]:!leading-5 [&_.leaflet-popup-close-button]:!text-[#a8a7b8] [&_.lf-popup]:w-[180px] [&_.lf-popup]:break-words [&_.lf-popup]:p-[10px_12px] [&_.lf-popup]:font-['Poppins'] [&_.lf-popup]:text-[#18172b] [&_.lf-popup_b]:mb-[3px] [&_.lf-popup_b]:block [&_.lf-popup_b]:text-[0.75rem] [&_.lf-popup_b]:font-medium [&_.lf-popup_b]:leading-[1.35] [&_.lf-popup_small]:block [&_.lf-popup_small]:text-[0.67rem] [&_.lf-popup_small]:leading-[1.4] [&_.lf-popup_small]:text-[#a8a7b8] [&_.kw-popup]:w-[240px] [&_.kw-popup]:font-['Poppins'] [&_.kw-popup]:text-[#18172b] [&_.kw-popup-head]:border-b [&_.kw-popup-head]:border-[#e4e3ea] [&_.kw-popup-head]:bg-[#fafafa] [&_.kw-popup-head]:px-[13px] [&_.kw-popup-head]:pb-2.5 [&_.kw-popup-head]:pt-[11px] [&_.kw-popup-name]:mb-0.5 [&_.kw-popup-name]:pr-4 [&_.kw-popup-name]:text-[0.8rem] [&_.kw-popup-name]:font-medium [&_.kw-popup-name]:leading-[1.3] [&_.kw-popup-name]:text-[#18172b] [&_.kw-popup-lokasi]:flex [&_.kw-popup-lokasi]:items-center [&_.kw-popup-lokasi]:gap-[3px] [&_.kw-popup-lokasi]:text-[0.66rem] [&_.kw-popup-lokasi]:text-[#6b6a7d] [&_.kw-popup-body]:flex [&_.kw-popup-body]:flex-col [&_.kw-popup-body]:gap-2 [&_.kw-popup-body]:bg-white [&_.kw-popup-body]:p-[10px_13px] [&_.kw-popup-badge]:inline-flex [&_.kw-popup-badge]:items-center [&_.kw-popup-badge]:gap-1 [&_.kw-popup-badge]:rounded-full [&_.kw-popup-badge]:px-[9px] [&_.kw-popup-badge]:py-[3px] [&_.kw-popup-badge]:text-[0.64rem] [&_.kw-popup-badge]:font-normal [&_.kw-popup-badge.green]:bg-[#dcfce7] [&_.kw-popup-badge.green]:text-[#16a34a] [&_.kw-popup-badge.red]:bg-[#fee2e2] [&_.kw-popup-badge.red]:text-[#dc2626] [&_.kw-popup-meta]:grid [&_.kw-popup-meta]:grid-cols-2 [&_.kw-popup-meta]:gap-[5px] [&_.kw-popup-meta-item]:rounded-md [&_.kw-popup-meta-item]:bg-[#f4f3f8] [&_.kw-popup-meta-item]:px-2 [&_.kw-popup-meta-item]:py-1.5 [&_.kw-popup-meta-key]:mb-px [&_.kw-popup-meta-key]:text-[0.56rem] [&_.kw-popup-meta-key]:font-normal [&_.kw-popup-meta-key]:text-[#a8a7b8] [&_.kw-popup-meta-val]:text-[0.7rem] [&_.kw-popup-meta-val]:font-normal [&_.kw-popup-meta-val]:text-[#18172b] [&_.kw-popup-akses-title]:mb-1 [&_.kw-popup-akses-title]:text-[0.6rem] [&_.kw-popup-akses-title]:font-normal [&_.kw-popup-akses-title]:text-[#a8a7b8] [&_.kw-popup-akses-row]:flex [&_.kw-popup-akses-row]:items-center [&_.kw-popup-akses-row]:justify-between [&_.kw-popup-akses-row]:border-b [&_.kw-popup-akses-row]:border-[#e4e3ea] [&_.kw-popup-akses-row]:py-[5px] [&_.kw-popup-akses-row:last-child]:border-b-0 [&_.kw-popup-akses-row:last-child]:pb-0 [&_.kw-popup-akses-name]:text-[0.69rem] [&_.kw-popup-akses-name]:font-normal [&_.kw-popup-akses-name]:text-[#18172b] [&_.kw-popup-chip]:rounded-full [&_.kw-popup-chip]:px-[7px] [&_.kw-popup-chip]:py-0.5 [&_.kw-popup-chip]:text-[0.6rem] [&_.kw-popup-chip]:font-normal [&_.kw-popup-chip.ya]:bg-[#dcfce7] [&_.kw-popup-chip.ya]:text-[#16a34a] [&_.kw-popup-chip.not]:bg-[#fee2e2] [&_.kw-popup-chip.not]:text-[#dc2626] [&_.detail-name]:mb-0.5 [&_.detail-name]:text-[0.82rem] [&_.detail-name]:font-semibold [&_.detail-name]:leading-[1.3] [&_.detail-name]:text-[#18172b] [&_.detail-lokasi]:mb-2.5 [&_.detail-lokasi]:text-[0.68rem] [&_.detail-lokasi]:text-[#6b6a7d] [&_.detail-meta]:mb-2.5 [&_.detail-meta]:grid [&_.detail-meta]:grid-cols-2 [&_.detail-meta]:gap-1.5 [&_.detail-meta-item]:rounded-md [&_.detail-meta-item]:bg-[#f4f3f8] [&_.detail-meta-item]:px-[9px] [&_.detail-meta-item]:py-[7px] [&_.detail-meta-key]:mb-0.5 [&_.detail-meta-key]:text-[0.58rem] [&_.detail-meta-key]:font-normal [&_.detail-meta-key]:text-[#a8a7b8] [&_.detail-meta-val]:font-['Poppins'] [&_.detail-meta-val]:text-[0.73rem] [&_.detail-meta-val]:font-medium [&_.detail-meta-val]:text-[#18172b] [&_.detail-status-badge]:mb-2.5 [&_.detail-status-badge]:inline-flex [&_.detail-status-badge]:items-center [&_.detail-status-badge]:gap-1 [&_.detail-status-badge]:rounded-full [&_.detail-status-badge]:px-2.5 [&_.detail-status-badge]:py-[3px] [&_.detail-status-badge]:text-[0.67rem] [&_.detail-status-badge]:font-medium [&_.detail-status-badge.green]:bg-[#dcfce7] [&_.detail-status-badge.green]:text-[#16a34a] [&_.detail-status-badge.red]:bg-[#fee2e2] [&_.detail-status-badge.red]:text-[#dc2626] [&_.detail-status-badge_svg]:h-[11px] [&_.detail-status-badge_svg]:w-[11px] [&_.detail-status-badge_svg]:shrink-0 [&_.detail-status-badge_svg]:fill-none [&_.detail-status-badge_svg]:stroke-current [&_.detail-status-badge_svg]:stroke-[2.5] [&_.detail-status-badge_svg]:[stroke-linecap:round] [&_.detail-status-badge_svg]:[stroke-linejoin:round] [&_.detail-akses-title]:mb-1.5 [&_.detail-akses-title]:text-[0.62rem] [&_.detail-akses-title]:font-normal [&_.detail-akses-title]:text-[#a8a7b8] [&_.akses-row]:flex [&_.akses-row]:items-center [&_.akses-row]:justify-between [&_.akses-row]:border-b [&_.akses-row]:border-[#e4e3ea] [&_.akses-row]:py-1.5 [&_.akses-row:last-child]:border-b-0 [&_.akses-row:last-child]:pb-0 [&_.akses-row-left]:flex [&_.akses-row-left]:items-center [&_.akses-row-left]:gap-[7px] [&_.akses-name]:text-[0.71rem] [&_.akses-name]:font-normal [&_.akses-name]:text-[#18172b] [&_.akses-status-chip]:rounded-full [&_.akses-status-chip]:px-2 [&_.akses-status-chip]:py-0.5 [&_.akses-status-chip]:font-['Poppins'] [&_.akses-status-chip]:text-[0.62rem] [&_.akses-status-chip]:font-medium [&_.akses-status-chip.ya]:bg-[#dcfce7] [&_.akses-status-chip.ya]:text-[#16a34a] [&_.akses-status-chip.not]:bg-[#fee2e2] [&_.akses-status-chip.not]:text-[#dc2626]">
     
-{{-- ══════════════════════════════════════════
-         LEFT SIDEBAR
-    ══════════════════════════════════════════ --}}
+{{-- Side Bar Kiri: Panel Kontrol --}}
     <aside class="sidebar-left fixed bottom-0 left-0 top-[60px] z-[1100] flex w-[280px] max-w-[85vw] -translate-x-full flex-col overflow-y-auto overflow-x-hidden border-r border-[#e4e3ea] bg-[#fafafa] shadow-[4px_0_24px_rgba(0,0,0,0.12)] transition-transform duration-200 ease-in-out [&.drawer-open]:translate-x-0 [&::-webkit-scrollbar]:w-[3px] [&::-webkit-scrollbar-thumb]:rounded-sm [&::-webkit-scrollbar-thumb]:bg-[#d0cfd8] md:static md:z-auto md:w-auto md:max-w-none md:translate-x-0 md:shadow-none md:transition-none">
         <div class="sidebar-header shrink-0 border-b border-[#e4e3ea] px-3.5 pb-2.5 pt-3">
             <div class="sidebar-header-label mb-0.5 text-[0.62rem] font-normal tracking-[0.02em] text-[#a8a7b8]">Panel Kontrol</div>
@@ -156,7 +154,6 @@
             </div>
         </div>
 
-        {{-- Hidden input status --}}
         <input type="hidden" id="hiddenStatus" value="{{ $statusFilter }}">
 
         <div class="apply-btn-group mx-3.5 my-2.5 flex flex-wrap gap-2">
@@ -172,19 +169,15 @@
 
     </aside>
 
-    {{-- ══════════════════════════════════════════
-         CENTER MAP
-    ══════════════════════════════════════════ --}}
+    {{-- Peta Tengah --}}
     <div class="map-area relative overflow-hidden">
         <div id="map" class="h-full w-full"></div>
 
-        {{-- Cara Menggunakan Peta – floating button --}}
+        {{-- Cara Penggunaan Peta --}}
         <button onclick="document.getElementById('modalCaraPenggunaan').classList.remove('hidden')" class="absolute right-3.5 top-3.5 z-[500] flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1.5 font-['Poppins'] text-[0.68rem] font-medium text-[#6b6a7d] shadow-[0_4px_16px_rgba(0,0,0,0.08),0_1px_4px_rgba(0,0,0,0.04)] backdrop-blur-md transition duration-[180ms] hover:bg-[#e8edff] hover:text-[#3b5bdb] active:scale-95 [&_svg]:h-3.5 [&_svg]:w-3.5 [&_svg]:shrink-0 [&_svg]:fill-none [&_svg]:stroke-current [&_svg]:stroke-2 [&_svg]:[stroke-linecap:round] [&_svg]:[stroke-linejoin:round]">
             <svg viewBox="0 0 24 24" class="!stroke-[#f97316]"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
             Cara Menggunakan Peta
         </button>
-
-
 
         <div class="map-legend absolute bottom-32 left-3.5 z-[500] min-w-[130px] md:min-w-[170px] md:bottom-6 rounded-[8px] md:rounded-[10px] bg-white/95 px-2.5 py-2 md:px-3.5 md:py-3 shadow-[0_4px_16px_rgba(0,0,0,0.08),0_1px_4px_rgba(0,0,0,0.04)] backdrop-blur-md">
             <div class="legend-title mb-[6px] md:mb-[9px] text-[0.58rem] md:text-[0.68rem] font-normal tracking-[0.02em] text-[#a8a7b8]">Legenda</div>
@@ -217,9 +210,7 @@
         </div>
     </div>
 
-    {{-- ══════════════════════════════════════════
-         RIGHT SIDEBAR – PANEL ANALISIS
-    ══════════════════════════════════════════ --}}
+    {{-- Side Bar Kanan: Panel Analisis --}}
     <aside class="sidebar-right fixed bottom-0 right-0 top-[60px] z-[1100] flex w-[300px] max-w-[90vw] translate-x-full flex-col overflow-hidden border-l border-[#e4e3ea] bg-[#fafafa] shadow-[-4px_0_24px_rgba(0,0,0,0.12)] transition-transform duration-200 ease-in-out [&.drawer-open]:translate-x-0 md:static md:z-auto md:w-auto md:max-w-none md:translate-x-0 md:shadow-none md:transition-none">
         <div class="panel-header shrink-0 border-b border-[#e4e3ea] px-3.5 pb-2.5 pt-3">
             <div class="panel-header-label mb-0.5 text-[0.62rem] font-normal tracking-[0.02em] text-[#a8a7b8]">Hasil Analisis</div>
@@ -228,7 +219,6 @@
 
         <div class="panel-body flex-1 overflow-y-auto overflow-x-hidden px-3 py-2.5 [&::-webkit-scrollbar]:w-[3px] [&::-webkit-scrollbar-thumb]:rounded-sm [&::-webkit-scrollbar-thumb]:bg-[#d0cfd8]">
 
-            {{-- ── Mode 1: Summary ── --}}
             <div id="panel-summary" class="flex flex-col gap-2">
 
                 @if(!$hasApplied)
@@ -321,14 +311,12 @@
 
             </div>
 
-            {{-- ── Mode 2: Detail Kawasan ── --}}
             <div id="panel-detail" class="hidden flex-col gap-2">
                 <div class="detail-back mb-1 flex w-fit cursor-pointer items-center gap-[5px] rounded-md px-[7px] py-[5px] text-[0.68rem] font-medium text-[#3b5bdb] transition-colors duration-[180ms] hover:bg-[#e8edff] [&_svg]:h-3 [&_svg]:w-3 [&_svg]:fill-none [&_svg]:stroke-[#3b5bdb] [&_svg]:stroke-[2.5] [&_svg]:[stroke-linecap:round] [&_svg]:[stroke-linejoin:round]" onclick="closeDetail()">
                     <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
                     Kembali ke ringkasan
                 </div>
                 <div class="detail-card rounded-[10px] border border-[#e4e3ea] bg-white p-3 shadow-[0_1px_3px_rgba(0,0,0,0.06),0_1px_2px_rgba(0,0,0,0.04)]" id="detailCard">
-                    {{-- diisi oleh JS --}}
                 </div>
             </div>
 
@@ -339,9 +327,7 @@
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
-/* ══════════════════════════════════════════
-   DATA DARI LARAVEL
-══════════════════════════════════════════ */
+    
 const wilayah   = @json($wilayah);
 const jalan     = @json($jalan);
 const kawasan   = @json($kawasan);
@@ -356,17 +342,12 @@ document.querySelectorAll('[data-pct]').forEach(el => {
     el.style.width = (el.dataset.pct || 0) + '%';
 });
 
-/* Buat lookup kawasan by id */
 const kawasanMap = {};
 kawasan.forEach(k => kawasanMap[k.id] = k);
 
-/* Buat lookup buffer by id */
 const bufferMap = {};
 buffer.forEach(b => bufferMap[b.id] = b);
 
-/* ══════════════════════════════════════════
-   INISIALISASI MAP
-══════════════════════════════════════════ */
 const map = L.map('map', { zoomControl: false });
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -382,9 +363,7 @@ window.addEventListener('resize', () => {
     setTimeout(() => map.invalidateSize(), 100);
 });
 
-/* ══════════════════════════════════════════
-   WILAYAH ADMINISTRASI
-══════════════════════════════════════════ */
+{{-- Wilayah Administrasi --}}
 const wilayahGroup = L.layerGroup().addTo(map);
 wilayah.forEach(item => {
     if (!item.geom) return;
@@ -393,9 +372,7 @@ wilayah.forEach(item => {
     }).addTo(wilayahGroup);
 });
 
-/* ══════════════════════════════════════════
-   JALAN
-══════════════════════════════════════════ */
+{{-- Jalan --}}
 const jalanGroup = L.layerGroup().addTo(map);
 jalan.forEach(item => {
     L.geoJSON(JSON.parse(item.geom), {
@@ -405,9 +382,7 @@ jalan.forEach(item => {
     .addTo(jalanGroup);
 });
 
-/* ══════════════════════════════════════════
-   BANDARA
-══════════════════════════════════════════ */
+{{-- Bandara --}}
 const bandaraGroup = L.layerGroup().addTo(map);
 let activeBandaraMarker = null;
 let activePelabuhanMarker = null;
@@ -452,9 +427,7 @@ bandara.forEach(item => {
     layer.addTo(bandaraGroup);
 });
 
-/* ══════════════════════════════════════════
-   PELABUHAN
-══════════════════════════════════════════ */
+{{-- Pelabuhan --}}
 const pelabuhanGroup = L.layerGroup().addTo(map);
 pelabuhan.forEach(item => {
     const el = document.createElement('div');
@@ -481,18 +454,13 @@ pelabuhan.forEach(item => {
     layer.addTo(pelabuhanGroup);
 });
 
-/* ══════════════════════════════════════════
-   KAWASAN INDUSTRI – MARKER + BUFFER
-══════════════════════════════════════════ */
 const kawasanGroup = L.layerGroup().addTo(map);
 const bufferGroup  = L.layerGroup().addTo(map);
 
 let activeMarkerId = null;
 
-/* Registry marker by kawasan id */
 const markerRegistry = {};
 
-/* Warna buffer sesuai radius */
 const bufferStyles = {
     '1': { color: '#8b6eb4', fillColor: '#8b6eb4', fillOpacity: 0.1, weight: 1.5, dashArray: '5,5' },
     '3': { color: '#4a7fd4', fillColor: '#4a7fd4', fillOpacity: 0.1, weight: 1.5, dashArray: '5,5' },
@@ -501,19 +469,16 @@ const bufferStyles = {
 
 function showBuffer(kawasanId) {
     bufferGroup.clearLayers();
+
     const buf = bufferMap[kawasanId];
-    if (!buf) return;
+    if (!buf || !buf.buffer_aktif) return;
 
-    const styleKey = activeRadius;
-    const bufKey   = `buffer_${activeRadius}km`;
-    if (!buf[bufKey]) return;
-
-    L.geoJSON(JSON.parse(buf[bufKey]), { style: bufferStyles[styleKey] }).addTo(bufferGroup);
+    L.geoJSON(JSON.parse(buf.buffer_aktif), {
+        style: bufferStyles[activeRadius]
+    }).addTo(bufferGroup);
 }
 
-/* Highlight / reset marker */
 function highlightMarker(id) {
-    /* Reset marker sebelumnya */
     if (activeMarkerId && markerRegistry[activeMarkerId]) {
         const prev = markerRegistry[activeMarkerId];
         prev.setStyle({ color: '#ffffff', weight: 2.5 });
@@ -532,7 +497,7 @@ kawasan.forEach(item => {
     const isOk = item.terjangkau;
 
     const markerColor = !hasApplied
-        ? '#64748b'                  // netral sebelum analisis
+        ? '#64748b'                  // sebelum analisis
         : (isOk ? '#22c55e' : '#ef4444');
 
     const markerLayer = L.geoJSON(geo, {
@@ -650,29 +615,24 @@ kawasan.forEach(item => {
     markerLayer.addTo(kawasanGroup);
 });
 
-/* Reset semua highlight */
 function resetAllHighlights() {
     highlightMarker(null);
     if (activeBandaraMarker)   { activeBandaraMarker.setIcon(makeBandaraIcon(false));     activeBandaraMarker   = null; }
     if (activePelabuhanMarker) { activePelabuhanMarker.setIcon(makePelabuhanIcon(false)); activePelabuhanMarker = null; }
 }
 
-/* Reset highlight saat popup ditutup (tombol X atau klik luar) */
 map.on('popupclose', function() {
     resetAllHighlights();
     activeMarkerId = null;
 });
 
-/* Tutup buffer saat klik di luar */
 map.on('click', function(e) {
     bufferGroup.clearLayers();
     activeMarkerId = null;
     closeDetail();
 });
 
-/* ══════════════════════════════════════════
-   PANEL DETAIL
-══════════════════════════════════════════ */
+{{-- Panel Detail --}}
 function openDetail(id) {
     const item = kawasanMap[id];
     if (!item) return;
@@ -684,7 +644,6 @@ function openDetail(id) {
     const isOk = item.terjangkau;
     const radiusKey = activeRadius;
 
-    /* Akses per infrastruktur untuk radius aktif */
     const jalanOk      = item[`jalan_${radiusKey}km`];
     const pelabOk      = item[`pelabuhan_${radiusKey}km`];
     const bandaraOk    = item[`bandara_${radiusKey}km`];
@@ -761,9 +720,7 @@ function closeDetail() {
     activeMarkerId = null;
 }
 
-/* ══════════════════════════════════════════
-   LAYER TOGGLES
-══════════════════════════════════════════ */
+{{-- Layer Toggle --}}
 function bindLayer(checkId, group) {
     document.getElementById(checkId).addEventListener('change', function() {
         this.checked ? map.addLayer(group) : map.removeLayer(group);
@@ -776,9 +733,6 @@ bindLayer('layer-bandara',   bandaraGroup);
 bindLayer('layer-pelabuhan', pelabuhanGroup);
 bindLayer('layer-wilayah',   wilayahGroup);
 
-/* ══════════════════════════════════════════
-   COLLAPSIBLE SECTIONS
-══════════════════════════════════════════ */
 function toggleSection(id) {
     const head = document.getElementById('head-' + id);
     const body = document.getElementById('body-' + id);
@@ -787,11 +741,6 @@ function toggleSection(id) {
     head.classList.toggle('open', !isOpen);
 }
 
-/* ══════════════════════════════════════════
-   LEFT SIDEBAR: INTERAKSI KONTROL
-══════════════════════════════════════════ */
-
-/* Radius radio */
 document.querySelectorAll('#radiusGroup .radius-option').forEach(opt => {
     opt.addEventListener('click', function() {
         document.querySelectorAll('#radiusGroup .radius-option').forEach(o => o.classList.remove('active'));
@@ -800,7 +749,7 @@ document.querySelectorAll('#radiusGroup .radius-option').forEach(opt => {
     });
 });
 
-/* Infrastruktur checkbox */
+{{-- Infrastruktur Checkbox --}}
 document.querySelectorAll('.infra-item').forEach(item => {
     item.addEventListener('click', function() {
         const cb = this.querySelector('input[type="checkbox"]');
@@ -809,7 +758,7 @@ document.querySelectorAll('.infra-item').forEach(item => {
     });
 });
 
-/* Status filter */
+{{-- Status filter --}}
 const statusClassMap = {
     'semua':             'active-all',
     'terjangkau':        'active-green',
@@ -826,7 +775,6 @@ document.querySelectorAll('.status-btn').forEach(btn => {
     });
 });
 
-/* Apply button → validasi dulu, baru submit */
 document.getElementById('applyBtn').addEventListener('click', function() {
     const radiusInput = document.querySelector('#radiusGroup input[type="radio"]:checked');
     const radius = radiusInput ? radiusInput.value : null;
@@ -857,33 +805,27 @@ document.getElementById('applyBtn').addEventListener('click', function() {
     window.location.href = url.toString();
 });
 
-/* Reset button → kosongkan semua pilihan tanpa reload halaman */
+{{-- Reset Button --}}
 document.getElementById('resetBtn').addEventListener('click', function() {
-    // Radius
     document.querySelectorAll('#radiusGroup .radius-option').forEach(function(opt) {
         opt.classList.remove('active');
         opt.querySelector('input[type="radio"]').checked = false;
     });
 
-    // Infrastruktur
     document.querySelectorAll('.infra-item').forEach(function(item) {
         item.classList.remove('active');
         item.querySelector('input[type="checkbox"]').checked = false;
     });
 
-    // Status
     document.querySelectorAll('.status-btn').forEach(function(btn) {
         btn.classList.remove('active-all', 'active-green', 'active-red');
     });
     document.getElementById('hiddenStatus').value = '';
 
-    // Tutup pesan validasi kalau sedang terbuka
     document.getElementById('modalValidasi').classList.add('hidden');
 });
 
-/* ══════════════════════════════════════════
-   MOBILE DRAWER LOGIC
-══════════════════════════════════════════ */
+{{-- Mobile --}}
 function toggleDrawer(side) {
     const overlay  = document.getElementById('drawerOverlay');
     const sidebarL = document.querySelector('.sidebar-left');
@@ -912,12 +854,10 @@ function closeAllDrawers() {
     document.getElementById('drawerOverlay')?.classList.remove('active');
 }
 
-/* Tutup drawer saat map di-klik di mobile */
 document.getElementById('map').addEventListener('click', function() {
     if (window.innerWidth < 768) closeAllDrawers();
 });
 
-/* Invalidate map size saat drawer tertutup (supaya tile tidak blank) */
 document.getElementById('drawerOverlay').addEventListener('click', function() {
     setTimeout(() => map.invalidateSize(), 260);
 });
@@ -925,9 +865,7 @@ document.getElementById('drawerOverlay').addEventListener('click', function() {
 
 @stack('scripts')
 
-{{-- ══════════════════════════════════════════
-     MODAL: VALIDASI PARAMETER
-══════════════════════════════════════════ --}}
+{{-- Modal Validasi Parameter --}}
 <div id="modalValidasi" class="hidden fixed inset-0 z-[2100] flex items-center justify-center p-4" onclick="if(event.target===this)document.getElementById('modalValidasi').classList.add('hidden')">
     <div class="absolute inset-0 bg-black/60"></div>
     <div class="relative z-10 w-full max-w-xs rounded-xl border border-[#e4e3ea] bg-white shadow-[0_8px_32px_rgba(0,0,0,0.12)] p-5 flex flex-col gap-3">
@@ -944,17 +882,13 @@ document.getElementById('drawerOverlay').addEventListener('click', function() {
     </div>
 </div>
 
-{{-- ══════════════════════════════════════════
-     MODAL: CARA MENGGUNAKAN PETA
-══════════════════════════════════════════ --}}
+{{-- Modal Cara Penggunaan --}}
 <div id="modalCaraPenggunaan" class="hidden fixed inset-0 z-[2000] flex items-center justify-center p-4" onclick="if(event.target===this)this.classList.add('hidden')">
-    {{-- Backdrop --}}
+
     <div class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
 
-    {{-- Modal card --}}
     <div class="relative z-10 w-full max-w-md rounded-2xl border border-[#e4e3ea] bg-white shadow-[0_24px_64px_rgba(0,0,0,0.16),0_4px_16px_rgba(0,0,0,0.08)] flex flex-col max-h-[85vh]">
 
-        {{-- Header --}}
         <div class="shrink-0 flex items-center justify-between border-b border-[#e4e3ea] px-5 py-4">
             <div>
                 <div class="text-[0.6rem] font-normal tracking-[0.02em] text-[#a8a7b8] mb-0.5">Panduan</div>
@@ -965,7 +899,6 @@ document.getElementById('drawerOverlay').addEventListener('click', function() {
             </button>
         </div>
 
-        {{-- Body scrollable --}}
         <div class="overflow-y-auto px-5 py-4 flex flex-col gap-3 [&::-webkit-scrollbar]:w-[3px] [&::-webkit-scrollbar-thumb]:rounded-sm [&::-webkit-scrollbar-thumb]:bg-[#d0cfd8]">
             @php
             $steps = [
@@ -987,7 +920,6 @@ document.getElementById('drawerOverlay').addEventListener('click', function() {
             @endforeach
         </div>
 
-        {{-- Footer --}}
         <div class="shrink-0 border-t border-[#e4e3ea] px-5 py-3">
             <button onclick="document.getElementById('modalCaraPenggunaan').classList.add('hidden')" class="w-full rounded-[10px] bg-[#3b5bdb] py-2 font-['Poppins'] text-[0.75rem] font-semibold text-white transition hover:bg-[#2f4ac4] active:scale-[0.98]">
                 Mengerti

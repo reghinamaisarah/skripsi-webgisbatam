@@ -4,7 +4,6 @@
 >
     <div class="mx-auto grid max-w-[1080px] grid-cols-1 items-start gap-8 md:grid-cols-[1fr_1.1fr] md:gap-16">
 
-        {{-- Kiri --}}
         <div class="fade-up translate-y-5 opacity-0 transition-all duration-[600ms] ease-out">
             <p class="mb-2 flex items-center gap-2 font-['Plus_Jakarta_Sans'] text-[0.9375rem] font-[550] uppercase tracking-[0.1em] text-[#2F6390]">
                 Tentang Sistem
@@ -43,7 +42,6 @@
             </div>
         </div>
 
-        {{-- Kanan: methodology box --}}
         <div
             class="fade-up relative overflow-hidden rounded-[20px] bg-[#0f2147] px-6 pb-6 pt-7
                    translate-y-5 opacity-0 transition-all delay-100 duration-[600ms] ease-out

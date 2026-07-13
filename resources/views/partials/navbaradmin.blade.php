@@ -14,7 +14,6 @@
         font-family: 'Poppins', sans-serif;
     }
 
-    /* ── Brand (logo + judul) ── */
     .navbar-admin .brand {
         display: flex;
         align-items: center;
@@ -37,7 +36,6 @@
         letter-spacing: -0.01em;
     }
 
-    /* ── Admin info kanan ── */
     .navbar-admin .admin-info {
         display: flex;
         align-items: center;
@@ -64,7 +62,6 @@
         stroke-linejoin: round;
     }
 
-    /* ── Animasi masuk ── */
     @keyframes navSlideDown {
         from { opacity: 0; transform: translateY(-100%); }
         to   { opacity: 1; transform: translateY(0); }
@@ -85,7 +82,6 @@
     </a>
 
     <div class="admin-info">
-        {{-- Ikon user-admin --}}
         <svg viewBox="0 0 24 24">
             <circle cx="12" cy="8" r="4"/>
             <path d="M4 21c0-4 4-7 8-7s8 3 8 7"/>

@@ -24,7 +24,7 @@
             max-[640px]:min-h-0 max-[640px]:flex-col max-[640px]:rounded-2xl"
     >
 
-        {{-- LEFT slideshow --}}
+        {{-- Ilustrasi Gambar --}}
         <div class="relative min-w-[300px] flex-1 overflow-hidden
             max-[640px]:h-[210px] max-[640px]:min-w-0 max-[640px]:w-full max-[640px]:flex-none">
             @foreach (['login-1.png', 'login-2.png', 'login-3.png'] as $i => $img)
@@ -97,7 +97,7 @@
             </div>
         </div>
 
-        {{-- RIGHT form --}}
+        {{-- Form Login Admin --}}
         <div class="flex flex-1 flex-col justify-center border-l border-white/10 px-12 py-11
             max-[640px]:border-l-0 max-[640px]:border-t max-[640px]:border-white/10
             max-[640px]:px-7 max-[640px]:py-8">

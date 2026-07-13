@@ -40,7 +40,6 @@
     $kawasanBaik = $kawasan->filter(function($k) use ($akses) { $c = (int)$akses($k->id,'jalan_5km') + (int)$akses($k->id,'pelabuhan_5km') + (int)$akses($k->id,'bandara_5km'); return $c >= 2; })->sortByDesc(fn($k) => (int)$akses($k->id,'jalan_5km') + (int)$akses($k->id,'pelabuhan_5km') + (int)$akses($k->id,'bandara_5km'))->take(5)->values();
     $kawasanKurang = $kawasan->filter(function($k) use ($akses) { $c = (int)$akses($k->id,'jalan_5km') + (int)$akses($k->id,'pelabuhan_5km') + (int)$akses($k->id,'bandara_5km'); return $c <= 1; })->sortBy(fn($k) => (int)$akses($k->id,'jalan_5km') + (int)$akses($k->id,'pelabuhan_5km') + (int)$akses($k->id,'bandara_5km'))->take(5)->values();
 
-    // class util reusable
     $statCardCls = 'bg-white border border-[#ececec] rounded-xl px-5 py-4 flex items-center gap-[0.9rem] shadow-[0_1px_3px_rgba(0,0,0,0.03)]';
     $insightCardCls = 'bg-white border border-[#ececec] rounded-xl px-5 pt-[1.1rem] pb-5 flex flex-col';
     $insightEmptyCls = 'flex-1 flex items-center justify-center text-[#b8b8b8] text-[0.78rem] italic border-[1.5px] border-dashed border-[#e5e5e5] rounded-[10px] p-6';
@@ -51,7 +50,7 @@
     <h1 class="text-[1.2rem] sm:text-[1.45rem] font-semibold text-[#111827]">Data &amp; Insight</h1>
     <p class="text-[0.78rem] sm:text-[0.82rem] text-[#6b7280] mt-1 mb-5 sm:mb-6">Seluruh data kawasan industri, pelabuhan, bandara, dan jalan di Kota Batam</p>
 
-    {{-- STAT CARDS --}}
+    {{-- Statistic Card --}}
     @php
         $stats = [
             ['bg-[#fee2e2]', 'text-[#dc2626]', 'stroke-[#dc2626]', $totalKawasan, 'Kawasan Industri', '<path d="M12 16h.01"/><path d="M16 16h.01"/><path d="M3 19a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5a.5.5 0 0 0-.769-.422l-4.462 2.844A.5.5 0 0 1 15 10.5v-2a.5.5 0 0 0-.769-.422L9.77 10.922A.5.5 0 0 1 9 10.5V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2z"/><path d="M8 16h.01"/>'],
@@ -76,10 +75,9 @@
         @endforeach
     </div>
 
-    {{-- INSIGHT GRID --}}
+    {{-- Insight --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-4 mb-4 sm:mb-5">
 
-        {{-- Card 1 --}}
         <div class="{{ $insightCardCls }}">
             <div class="flex items-center gap-2 text-[0.85rem] font-semibold mb-4 text-[#1a3a8f]">
                 <svg viewBox="0 0 24 24" class="w-4 h-4 fill-none [stroke-width:2] [stroke-linecap:round] [stroke-linejoin:round] stroke-[#1a3a8f]">
@@ -134,7 +132,6 @@
             @endif
         </div>
 
-        {{-- Card 2 --}}
         <div class="{{ $insightCardCls }}">
             <div class="flex items-center gap-2 text-[0.85rem] font-semibold mb-4 text-[#1a3a8f]">
                 <svg viewBox="0 0 24 24" class="w-4 h-4 fill-none [stroke-width:2] [stroke-linecap:round] [stroke-linejoin:round] stroke-[#1a3a8f]">
@@ -173,7 +170,6 @@
             @endif
         </div>
 
-        {{-- Card 3 & 4 --}}
         @php
             $rankCards = [
                 ['Terjangkau Baik', 'text-[#059669]', 'stroke-[#059669]', '<polyline points="20 6 9 17 4 12"/>', $kawasanBaik, 'Tidak ada kawasan dengan akses ≥2 infrastruktur.', 'Terjangkau ≥2 infrastruktur dalam radius 5 km. Maks. 5 kawasan.'],
@@ -211,7 +207,7 @@
         @endforeach
     </div>
 
-    {{-- TABS + TABLE --}}
+    {{-- Tabs + Table --}}
     <div class="bg-white border border-[#e5e7eb] rounded-[10px] shadow-[0_1px_2px_rgba(0,0,0,0.03)] overflow-hidden">
         <div class="flex items-center gap-1 px-4 pt-3 border-b border-[#f0f0f0] overflow-x-auto scrollbar-none [-webkit-overflow-scrolling:touch]">
             @php
@@ -250,7 +246,7 @@
             $emptyTr = 'text-center !p-8 text-[#9ca3af] italic';
         @endphp
 
-        {{-- KAWASAN --}}
+        {{-- Data Kawasan --}}
         <div id="panel-kawasan" class="tab-panel block">
             <div class="{{ $tableWrap }}">
                 <table data-table class="{{ $tableCls }}">
@@ -284,7 +280,7 @@
             </div>
         </div>
 
-        {{-- PELABUHAN --}}
+        {{-- Data Pelabuhan --}}
         <div id="panel-pelabuhan" class="tab-panel hidden">
             <div class="{{ $tableWrap }}">
                 <table data-table class="{{ $tableCls }}">
@@ -312,7 +308,7 @@
             </div>
         </div>
 
-        {{-- BANDARA --}}
+        {{-- Data Bandara --}}
         <div id="panel-bandara" class="tab-panel hidden">
             <div class="{{ $tableWrap }}">
                 <table data-table class="{{ $tableCls }}">
@@ -338,7 +334,7 @@
             </div>
         </div>
 
-        {{-- JALAN --}}
+        {{-- Data Jalan --}}
         <div id="panel-jalan" class="tab-panel hidden">
             <div class="{{ $tableWrap }}">
                 <table data-table class="{{ $tableCls }}">

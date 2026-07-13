@@ -34,7 +34,7 @@
     <div class="relative grid h-[calc(100vh-56px)] min-h-[calc(100vh-56px)] grid-cols-[250px_minmax(0,1fr)] max-[900px]:block max-[900px]:overflow-hidden">
         @include('partials.sidebaradmin')
 
-        {{-- ============== MAIN ============== --}}
+        {{-- Main --}}
         <main class="h-full min-w-0 overflow-hidden px-6 py-5 max-[900px]:h-[calc(100vh-56px)] max-[900px]:overflow-y-auto max-[900px]:px-3 max-[900px]:pb-4 max-[900px]:pt-[4.75rem]">
 
             @if(session('success'))
@@ -50,7 +50,7 @@
                 </div>
             @endif
 
-            {{-- ===== TAB: KAWASAN ===== --}}
+            {{-- Tab: Kawasan --}}
             <div id="tab-kawasan" class="tab-pane block">
                 <div class="flex flex-col rounded-[10px] border border-[#e5e7eb] bg-white p-[1.1rem] shadow-[0_1px_2px_rgba(0,0,0,0.03)] h-[calc(100vh-100px)] max-[900px]:h-auto max-[900px]:min-h-0">
                     <div class="mb-[0.9rem] flex flex-wrap items-center justify-between gap-3 [&_h3]:text-[0.92rem] [&_h3]:font-semibold [&_h3]:tracking-[-0.005em] [&_h3]:text-[#1f2937]">
@@ -132,10 +132,10 @@
                 </div>
             </div>
 
-            {{-- ===== TAB: INFRASTRUKTUR (with sub-tabs) ===== --}}
+            {{-- Tab: Infrastruktur --}}
             <div id="tab-infrastruktur" class="tab-pane hidden">
 
-                {{-- ── SUB-TAB: PELABUHAN ── --}}
+                {{-- SubTab: Pelabuhan --}}
                 <div id="subtab-pelabuhan" class="subtab-pane block">
                     <div class="flex flex-col rounded-[10px] border border-[#e5e7eb] bg-white p-[1.1rem] shadow-[0_1px_2px_rgba(0,0,0,0.03)] h-auto">
                         <div class="mb-[0.9rem] flex flex-wrap items-center justify-between gap-3 [&_h3]:text-[0.92rem] [&_h3]:font-semibold [&_h3]:tracking-[-0.005em] [&_h3]:text-[#1f2937]">
@@ -196,7 +196,7 @@
                     </div>
                 </div>
 
-                {{-- ── SUB-TAB: BANDARA ── --}}
+                {{-- SubTab: Bandara --}}
                 <div id="subtab-bandara" class="subtab-pane hidden">
                     <div class="flex flex-col rounded-[10px] border border-[#e5e7eb] bg-white p-[1.1rem] shadow-[0_1px_2px_rgba(0,0,0,0.03)] h-auto">
                         <div class="mb-[0.9rem] flex flex-wrap items-center justify-between gap-3 [&_h3]:text-[0.92rem] [&_h3]:font-semibold [&_h3]:tracking-[-0.005em] [&_h3]:text-[#1f2937]">
@@ -256,7 +256,7 @@
                     </div>
                 </div>
 
-                {{-- ── SUB-TAB: JALAN ── --}}
+                {{-- SubTab: Jalan --}}
                 <div id="subtab-jalan" class="subtab-pane hidden">
                     <div class="flex flex-col rounded-[10px] border border-[#e5e7eb] bg-white p-[1.1rem] shadow-[0_1px_2px_rgba(0,0,0,0.03)] h-[calc(100vh-100px)] max-[900px]:h-auto max-[900px]:min-h-0">
                         <div class="mb-[0.9rem] flex flex-wrap items-center justify-between gap-3 [&_h3]:text-[0.92rem] [&_h3]:font-semibold [&_h3]:tracking-[-0.005em] [&_h3]:text-[#1f2937]">
@@ -309,9 +309,9 @@
                     </div>
                 </div>
 
-            </div>{{-- /tab-infrastruktur --}}
+            </div>
 
-            {{-- ===== TAB: PETA ===== --}}
+            {{-- Tab: Peta --}}
             <div id="tab-peta" class="tab-pane hidden">
                 <div class="flex flex-col rounded-[10px] border border-[#e5e7eb] bg-white p-[1.1rem] shadow-[0_1px_2px_rgba(0,0,0,0.03)] h-[calc(100vh-100px)] max-[900px]:h-auto max-[900px]:min-h-0 overflow-hidden p-0">
                     <div class="min-h-0 flex-1 [&_iframe]:block [&_iframe]:h-full [&_iframe]:w-full [&_iframe]:border-0">
@@ -323,9 +323,7 @@
         </main>
     </div>
 
-    {{-- ====================== MODALS ====================== --}}
-
-    {{-- Kawasan: Create --}}
+    {{-- Modal Create Kawasan --}}
     <div class="modal-overlay fixed inset-0 z-[200] hidden items-center justify-center bg-[rgba(15,23,42,0.45)] p-4" id="modal-kawasan-create">
         <div class="w-full max-w-[480px] max-h-[90vh] overflow-y-auto rounded-[10px] bg-white p-[1.35rem] shadow-[0_18px_40px_rgba(0,0,0,0.18)] [&_h3]:mb-4 [&_h3]:text-[0.95rem] [&_h3]:font-semibold [&_h3]:text-[#1a3a5c]">
             <h3>Tambah Kawasan Industri</h3>
@@ -362,7 +360,7 @@
         </div>
     </div>
 
-    {{-- Kawasan: Edit --}}
+    {{-- Modal Edit Kawasan --}}
     <div class="modal-overlay fixed inset-0 z-[200] hidden items-center justify-center bg-[rgba(15,23,42,0.45)] p-4" id="modal-kawasan-edit">
         <div class="w-full max-w-[480px] max-h-[90vh] overflow-y-auto rounded-[10px] bg-white p-[1.35rem] shadow-[0_18px_40px_rgba(0,0,0,0.18)] [&_h3]:mb-4 [&_h3]:text-[0.95rem] [&_h3]:font-semibold [&_h3]:text-[#1a3a5c]">
             <h3>Edit Kawasan Industri</h3>
@@ -399,7 +397,7 @@
         </div>
     </div>
 
-    {{-- Pelabuhan: Create --}}
+    {{-- Modal Create Pelabuhan --}}
     <div class="modal-overlay fixed inset-0 z-[200] hidden items-center justify-center bg-[rgba(15,23,42,0.45)] p-4" id="modal-pelabuhan-create">
         <div class="w-full max-w-[480px] max-h-[90vh] overflow-y-auto rounded-[10px] bg-white p-[1.35rem] shadow-[0_18px_40px_rgba(0,0,0,0.18)] [&_h3]:mb-4 [&_h3]:text-[0.95rem] [&_h3]:font-semibold [&_h3]:text-[#1a3a5c]">
             <h3>Tambah Pelabuhan</h3>
@@ -433,7 +431,7 @@
         </div>
     </div>
 
-    {{-- Pelabuhan: Edit --}}
+    {{-- Modal Edit Pelabuhan --}}
     <div class="modal-overlay fixed inset-0 z-[200] hidden items-center justify-center bg-[rgba(15,23,42,0.45)] p-4" id="modal-pelabuhan-edit">
         <div class="w-full max-w-[480px] max-h-[90vh] overflow-y-auto rounded-[10px] bg-white p-[1.35rem] shadow-[0_18px_40px_rgba(0,0,0,0.18)] [&_h3]:mb-4 [&_h3]:text-[0.95rem] [&_h3]:font-semibold [&_h3]:text-[#1a3a5c]">
             <h3>Edit Pelabuhan</h3>
@@ -467,7 +465,7 @@
         </div>
     </div>
 
-    {{-- Bandara: Create --}}
+    {{-- Modal Create Bandara --}}
     <div class="modal-overlay fixed inset-0 z-[200] hidden items-center justify-center bg-[rgba(15,23,42,0.45)] p-4" id="modal-bandara-create">
         <div class="w-full max-w-[480px] max-h-[90vh] overflow-y-auto rounded-[10px] bg-white p-[1.35rem] shadow-[0_18px_40px_rgba(0,0,0,0.18)] [&_h3]:mb-4 [&_h3]:text-[0.95rem] [&_h3]:font-semibold [&_h3]:text-[#1a3a5c]">
             <h3>Tambah Bandara</h3>
@@ -500,7 +498,7 @@
         </div>
     </div>
 
-    {{-- Bandara: Edit --}}
+    {{-- Modal Edit Bandara --}}
     <div class="modal-overlay fixed inset-0 z-[200] hidden items-center justify-center bg-[rgba(15,23,42,0.45)] p-4" id="modal-bandara-edit">
         <div class="w-full max-w-[480px] max-h-[90vh] overflow-y-auto rounded-[10px] bg-white p-[1.35rem] shadow-[0_18px_40px_rgba(0,0,0,0.18)] [&_h3]:mb-4 [&_h3]:text-[0.95rem] [&_h3]:font-semibold [&_h3]:text-[#1a3a5c]">
             <h3>Edit Bandara</h3>
@@ -533,7 +531,7 @@
         </div>
     </div>
 
-    {{-- Jalan: Edit --}}
+    {{-- Modal Edit Jalan --}}
     <div class="modal-overlay fixed inset-0 z-[200] hidden items-center justify-center bg-[rgba(15,23,42,0.45)] p-4" id="modal-jalan-edit">
         <div class="w-full max-w-[480px] max-h-[90vh] overflow-y-auto rounded-[10px] bg-white p-[1.35rem] shadow-[0_18px_40px_rgba(0,0,0,0.18)] [&_h3]:mb-4 [&_h3]:text-[0.95rem] [&_h3]:font-semibold [&_h3]:text-[#1a3a5c]">
             <h3>Edit Jalan</h3>

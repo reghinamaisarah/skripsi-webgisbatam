@@ -14,7 +14,7 @@ class PetaController extends Controller
             && $request->has('infrastruktur')
             && $request->has('status');
 
-        // ── Parameter analisis ──
+        // Parameter analisis
         $radius = in_array($request->input('radius'), ['1', '3', '5'])
             ? $request->input('radius')
             : '3';
@@ -23,7 +23,6 @@ class PetaController extends Controller
 
         $statusFilter = $request->input('status', '');
 
-        // Pastikan infrastruktur selalu array
         if (!is_array($infrastruktur)) {
             $infrastruktur = [$infrastruktur];
         }
@@ -54,7 +53,6 @@ class PetaController extends Controller
             }
         }
 
-        // Jika tidak ada infrastruktur dipilih, anggap semua tidak terjangkau
         $terjangkauExpr = empty($accessConditions)
             ? 'FALSE'
             : '(' . implode(' AND ', $accessConditions) . ')';
@@ -63,7 +61,6 @@ class PetaController extends Controller
             $terjangkauExpr = 'NULL';
         }    
 
-        // ── Bangun HAVING / WHERE untuk filter status ──
         $statusHaving = '';
         if ($statusFilter === 'terjangkau') {
             $statusHaving = "HAVING {$terjangkauExpr}";
@@ -71,7 +68,7 @@ class PetaController extends Controller
             $statusHaving = "HAVING NOT ({$terjangkauExpr})";
         }
 
-        // ── Query kawasan industri dengan analisis dinamis ──
+        // Query kawasan industri dengan analisis dinamis
         $kawasan = DB::select("
             SELECT
                 ki.id,
@@ -145,29 +142,27 @@ class PetaController extends Controller
             );
         }
 
-        // ── Buffer (untuk semua kawasan, digunakan di frontend saat klik marker) ──
+        // Buffer 
         $buffer = DB::select("
             SELECT
                 id,
                 nama,
-                ST_AsGeoJSON(buffer_1km) AS buffer_1km,
-                ST_AsGeoJSON(buffer_3km) AS buffer_3km,
-                ST_AsGeoJSON(buffer_5km) AS buffer_5km
+                ST_AsGeoJSON({$bufferColumn}) AS buffer_aktif
             FROM buffer_kawasan
         ");
 
-        // ── Jalan ──
+        // Jalan
         $jalan = DB::select("
             SELECT
                 id,
                 nama_jalan,
                 jenis_jalan,
-                ST_AsGeoJSON(geom) AS geom
+                ST_AsGeoJSON(ST_SimplifyPreserveTopology(geom, 0.0001)) AS geom
             FROM jalan
             ORDER BY nama_jalan ASC
         ");
 
-        // ── Bandara ──
+        // Bandara
         $bandara = DB::select("
             SELECT
                 b.id,
@@ -181,7 +176,7 @@ class PetaController extends Controller
             ORDER BY b.nama ASC
         ");
 
-        // ── Pelabuhan ──
+        // Pelabuhan
         $pelabuhan = DB::select("
             SELECT
                 p.id,
@@ -196,18 +191,18 @@ class PetaController extends Controller
             ORDER BY p.nama ASC
         ");
 
-        // ── Wilayah Administrasi (seluruh Kota Batam, semua polygon) ──
+        // Wilayah Administrasi (seluruh Kota Batam)
         $wilayah = DB::select("
             SELECT
                 ST_AsGeoJSON(
-                    ST_Union(geom)
+                    ST_SimplifyPreserveTopology(ST_Union(geom), 0.0001)
                 ) AS geom
             FROM wilayah_administrasi
         ");
 
         $totalKawasan = KawasanIndustri::count();
 
-        // ── Hitung summary untuk panel ──
+        // Hitung summary untuk panel
         $allKawasan = DB::select("
             SELECT
                 ki.id,
