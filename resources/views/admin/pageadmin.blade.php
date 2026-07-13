@@ -51,7 +51,7 @@
             @endif
 
             {{-- Tab: Kawasan --}}
-            <div id="tab-kawasan" class="tab-pane block">
+            <div id="tab-kawasan" class="tab-pane {{ ($activeTab ?? 'kawasan') === 'kawasan' ? 'block' : 'hidden' }}">
                 <div class="flex flex-col rounded-[10px] border border-[#e5e7eb] bg-white p-[1.1rem] shadow-[0_1px_2px_rgba(0,0,0,0.03)] h-[calc(100vh-100px)] max-[900px]:h-auto max-[900px]:min-h-0">
                     <div class="mb-[0.9rem] flex flex-wrap items-center justify-between gap-3 [&_h3]:text-[0.92rem] [&_h3]:font-semibold [&_h3]:tracking-[-0.005em] [&_h3]:text-[#1f2937]">
                         <h3>Data Kawasan Industri ({{ $totalKawasan }})</h3>
@@ -133,10 +133,10 @@
             </div>
 
             {{-- Tab: Infrastruktur --}}
-            <div id="tab-infrastruktur" class="tab-pane hidden">
+            <div id="tab-infrastruktur" class="tab-pane {{ ($activeTab ?? 'kawasan') === 'infrastruktur' ? 'block' : 'hidden' }}">
 
                 {{-- SubTab: Pelabuhan --}}
-                <div id="subtab-pelabuhan" class="subtab-pane block">
+                <div id="subtab-pelabuhan" class="subtab-pane {{ ($activeSubtab ?? 'pelabuhan') === 'pelabuhan' ? 'block' : 'hidden' }}">
                     <div class="flex flex-col rounded-[10px] border border-[#e5e7eb] bg-white p-[1.1rem] shadow-[0_1px_2px_rgba(0,0,0,0.03)] h-auto">
                         <div class="mb-[0.9rem] flex flex-wrap items-center justify-between gap-3 [&_h3]:text-[0.92rem] [&_h3]:font-semibold [&_h3]:tracking-[-0.005em] [&_h3]:text-[#1f2937]">
                             <h3>Data Pelabuhan ({{ $totalPelabuhan }})</h3>
@@ -197,7 +197,7 @@
                 </div>
 
                 {{-- SubTab: Bandara --}}
-                <div id="subtab-bandara" class="subtab-pane hidden">
+                <div id="subtab-bandara" class="subtab-pane {{ ($activeSubtab ?? '') === 'bandara' ? 'block' : 'hidden' }}">
                     <div class="flex flex-col rounded-[10px] border border-[#e5e7eb] bg-white p-[1.1rem] shadow-[0_1px_2px_rgba(0,0,0,0.03)] h-auto">
                         <div class="mb-[0.9rem] flex flex-wrap items-center justify-between gap-3 [&_h3]:text-[0.92rem] [&_h3]:font-semibold [&_h3]:tracking-[-0.005em] [&_h3]:text-[#1f2937]">
                             <h3>Data Bandara ({{ $totalBandara }})</h3>
@@ -257,7 +257,7 @@
                 </div>
 
                 {{-- SubTab: Jalan --}}
-                <div id="subtab-jalan" class="subtab-pane hidden">
+                <div id="subtab-jalan" class="subtab-pane {{ ($activeSubtab ?? '') === 'jalan' ? 'block' : 'hidden' }}">
                     <div class="flex flex-col rounded-[10px] border border-[#e5e7eb] bg-white p-[1.1rem] shadow-[0_1px_2px_rgba(0,0,0,0.03)] h-[calc(100vh-100px)] max-[900px]:h-auto max-[900px]:min-h-0">
                         <div class="mb-[0.9rem] flex flex-wrap items-center justify-between gap-3 [&_h3]:text-[0.92rem] [&_h3]:font-semibold [&_h3]:tracking-[-0.005em] [&_h3]:text-[#1f2937]">
                             <h3>Data Jalan ({{ $totalJalan }})</h3>
