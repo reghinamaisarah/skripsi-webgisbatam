@@ -11,80 +11,36 @@ use App\Models\Jalan;
 
 class AdminController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $activeTab = $request->query('tab', 'kawasan');
-        $activeSubtab = $request->query('subtab', 'pelabuhan');
+        $kawasan = KawasanIndustri::with('wilayah')
+            ->select('kawasan_industri.*')
+            ->selectRaw('ST_Y(geom) AS latitude')
+            ->selectRaw('ST_X(geom) AS longitude')
+            ->orderBy('nama')
+            ->get();
 
-        $kawasan = collect();
-        $pelabuhan = collect();
-        $bandara = collect();
-        $jalan = collect();
+        $pelabuhan = Pelabuhan::with('wilayah')
+            ->select('pelabuhan.*')
+            ->selectRaw('ST_Y(geom) AS latitude')
+            ->selectRaw('ST_X(geom) AS longitude')
+            ->orderBy('nama')
+            ->get();
 
-        if ($activeTab === 'kawasan') {
-            $kawasan = KawasanIndustri::with('wilayah')
-                ->select([
-                    'id',
-                    'nama',
-                    'lokasi',
-                    'luas_lahan',
-                    'infrastruktur',
-                    'fasilitas',
-                    'tahun_beroperasi',
-                    'kode_kec',
-                    'geom',
-                ])
-                ->selectRaw('ST_Y(geom) AS latitude')
-                ->selectRaw('ST_X(geom) AS longitude')
-                ->orderBy('nama')
-                ->get();
-        }
+        $bandara = Bandara::with('wilayah')
+            ->select('bandara.*')
+            ->selectRaw('ST_Y(geom) AS latitude')
+            ->selectRaw('ST_X(geom) AS longitude')
+            ->orderBy('nama')
+            ->get();
 
-        if ($activeTab === 'infrastruktur' && $activeSubtab === 'pelabuhan') {
-            $pelabuhan = Pelabuhan::with('wilayah')
-                ->select([
-                    'id',
-                    'nama',
-                    'alamat',
-                    'jenis',
-                    'kode_kec',
-                    'geom',
-                ])
-                ->selectRaw('ST_Y(geom) AS latitude')
-                ->selectRaw('ST_X(geom) AS longitude')
-                ->orderBy('nama')
-                ->get();
-        }
+        $jalan = Jalan::orderBy('nama_jalan')
+            ->get();
 
-        if ($activeTab === 'infrastruktur' && $activeSubtab === 'bandara') {
-            $bandara = Bandara::with('wilayah')
-                ->select([
-                    'id',
-                    'nama',
-                    'alamat',
-                    'kode_kec',
-                    'geom',
-                ])
-                ->selectRaw('ST_Y(geom) AS latitude')
-                ->selectRaw('ST_X(geom) AS longitude')
-                ->orderBy('nama')
-                ->get();
-        }
-
-        if ($activeTab === 'infrastruktur' && $activeSubtab === 'jalan') {
-            $jalan = Jalan::select([
-                    'id',
-                    'nama_jalan',
-                    'jenis_jalan',
-                ])
-                ->orderBy('nama_jalan')
-                ->get();
-        }
-
-        $totalKawasan = KawasanIndustri::count();
-        $totalPelabuhan = Pelabuhan::count();
-        $totalBandara = Bandara::count();
-        $totalJalan = Jalan::count();
+        $totalKawasan = $kawasan->count();
+        $totalPelabuhan = $pelabuhan->count();
+        $totalBandara = $bandara->count();
+        $totalJalan = $jalan->count();
 
         return view('admin.pageadmin', compact(
             'kawasan',
@@ -94,9 +50,7 @@ class AdminController extends Controller
             'totalKawasan',
             'totalPelabuhan',
             'totalBandara',
-            'totalJalan',
-            'activeTab',
-            'activeSubtab'
+            'totalJalan'
         ));
     }
 
