@@ -3,17 +3,17 @@
     class="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-8 pb-16 pt-28 text-center font-['Plus_Jakarta_Sans']"
 >
     <img
-        src="{{ asset('images/bg-hero.webp') }}"
+        src="{{ asset('images/bg-hero.png') }}"
         alt=""
         aria-hidden="true"
-        fetchpriority="high"
-        decoding="async"
         class="absolute inset-0 h-full w-full object-cover object-center"
     >
 
     <div class="absolute inset-0 bg-[hsla(225,37%,15%,0.74)]"></div>
 
-    <div class="relative z-[2] max-w-[860px]">
+    <div
+        class="hero-fade relative z-[2] max-w-[860px] translate-y-5 opacity-0 transition-all duration-[900ms] ease-out"
+    >
         <h1
             class="mb-[1.125rem] text-[clamp(2.1rem,5vw,3.25rem)] font-bold leading-[1.15] text-white
                    [text-shadow:0_4px_24px_rgba(0,0,0,0.55),0_2px_8px_rgba(0,0,0,0.45),0_1px_2px_rgba(0,0,0,0.6)]"
@@ -31,7 +31,10 @@
         </p>
     </div>
 
-    <div class="relative z-[2] mb-10 flex flex-wrap justify-center gap-12 max-[600px]:gap-6">
+    <div
+        class="hero-fade relative z-[2] mb-10 flex flex-wrap justify-center gap-12 opacity-0 translate-y-5
+               transition-all delay-100 duration-[900ms] ease-out max-[600px]:gap-6"
+    >
         <div class="flex flex-col items-center text-white">
             <span class="text-[2rem] font-extrabold leading-none">
                 {{ $totalKawasan ?? 0 }}
@@ -69,7 +72,10 @@
         </div>
     </div>
 
-    <div class="relative z-[2] flex flex-wrap justify-center gap-4">
+    <div
+        class="hero-fade relative z-[2] flex translate-y-5 flex-wrap justify-center gap-4 opacity-0
+               transition-all delay-200 duration-[900ms] ease-out"
+    >
         <a
             href="{{ route('peta.index') }}"
             class="group inline-flex items-center gap-[0.4rem] rounded-lg border border-white/10 bg-[#213448]
@@ -101,3 +107,18 @@
         </a>
     </div>
 </section>
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const heroItems = document.querySelectorAll('#hero .hero-fade');
+
+    heroItems.forEach(function (item) {
+        requestAnimationFrame(function () {
+            item.classList.remove('translate-y-5', 'opacity-0');
+            item.classList.add('translate-y-0', 'opacity-100');
+        });
+    });
+});
+</script>
+@endpush

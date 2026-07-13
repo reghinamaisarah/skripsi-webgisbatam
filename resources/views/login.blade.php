@@ -15,9 +15,9 @@
 
 <div
     id="loginWrapper"
-    class="w-full max-w-[820px] max-[640px]:max-w-[390px]"
+    class="w-full max-w-[820px] translate-y-[22px] scale-[0.98] opacity-0 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]
+           max-[640px]:max-w-[390px]"
 >
-
     <div
         class="flex min-h-[490px] w-full overflow-hidden rounded-[20px] bg-[#6B7886]
             shadow-[0_2px_0_rgba(33,52,72,0.28),0_24px_64px_rgba(33,52,72,0.22),0_4px_16px_rgba(33,52,72,0.14)]
@@ -27,21 +27,15 @@
         {{-- Ilustrasi Gambar --}}
         <div class="relative min-w-[300px] flex-1 overflow-hidden
             max-[640px]:h-[210px] max-[640px]:min-w-0 max-[640px]:w-full max-[640px]:flex-none">
-            @foreach (['login-1.webp', 'login-2.webp', 'login-3.webp'] as $i => $img)
-            <img
-                src="{{ asset('images/' . $img) }}"
-                alt=""
-                aria-hidden="true"
-                decoding="async"
-                @if($i === 0)
-                    fetchpriority="high"
-                @else
-                    loading="lazy"
-                @endif
-                class="slide absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-[500ms]
-                    {{ $i === 0 ? 'opacity-100' : 'opacity-0' }}"
-            >
-        @endforeach
+            @foreach (['login-1.png', 'login-2.png', 'login-3.png'] as $i => $img)
+                <img
+                    src="{{ asset('images/' . $img) }}"
+                    alt=""
+                    aria-hidden="true"
+                    class="slide absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-[900ms]
+                           {{ $i === 0 ? 'opacity-100' : 'opacity-0' }}"
+                >
+            @endforeach
 
             <div class="absolute inset-0 z-[1] bg-[rgba(33,52,72,0.57)]"></div>
             <div class="absolute inset-0 z-[2] bg-[linear-gradient(to_top,rgba(33,52,72,0.5)_0%,transparent_50%)]"></div>
@@ -267,7 +261,16 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () { 
+document.addEventListener('DOMContentLoaded', function () {
+    const wrapper = document.getElementById('loginWrapper');
+
+    if (wrapper) {
+        requestAnimationFrame(function () {
+            wrapper.classList.remove('translate-y-[22px]', 'scale-[0.98]', 'opacity-0');
+            wrapper.classList.add('translate-y-0', 'scale-100', 'opacity-100');
+        });
+    }
+
     let current = 0;
 
     const slides = document.querySelectorAll('.slide');
