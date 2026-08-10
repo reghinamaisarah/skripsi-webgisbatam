@@ -37,7 +37,7 @@ Route::post('/logout', [LoginController::class, 'logout'])
 
 # Admin Routes (Protected)
 
-Route::middleware('auth')->prefix('admin')->group(function () {
+Route::middleware('auth')->group(function () {
 
     // Dashboard Admin
     Route::get('/pageadmin', [AdminController::class, 'index'])

@@ -15,9 +15,11 @@ class PetaController extends Controller
             && $request->has('status');
 
         // Parameter analisis
-        $radius = in_array($request->input('radius'), ['1', '3', '5'])
-            ? $request->input('radius')
-            : '3';
+        $radius = (float) $request->input('radius', 3);
+
+        if ($radius <= 0) {
+            $radius = 3;
+        }
 
         $infrastruktur = $request->input('infrastruktur', []);
 
@@ -27,30 +29,25 @@ class PetaController extends Controller
             $infrastruktur = [$infrastruktur];
         }
 
-        $bufferColumn = "buffer_{$radius}km";
-
         $accessConditions = [];
         $validInfrastruktur = ['jalan', 'pelabuhan', 'bandara'];
 
         foreach ($infrastruktur as $infra) {
             if (!in_array($infra, $validInfrastruktur)) continue;
 
-            if ($infra === 'jalan') {
-                $accessConditions[] = "EXISTS (
-                    SELECT 1 FROM jalan j
-                    WHERE ST_Intersects(bk.{$bufferColumn}, j.geom)
-                )";
-            } elseif ($infra === 'pelabuhan') {
-                $accessConditions[] = "EXISTS (
-                    SELECT 1 FROM pelabuhan p
-                    WHERE ST_Intersects(bk.{$bufferColumn}, p.geom)
-                )";
-            } elseif ($infra === 'bandara') {
-                $accessConditions[] = "EXISTS (
-                    SELECT 1 FROM bandara b
-                    WHERE ST_Intersects(bk.{$bufferColumn}, b.geom)
-                )";
-            }
+            $table = $infra;
+
+            $accessConditions[] = "EXISTS (
+                SELECT 1
+                FROM {$table} t
+                WHERE ST_Intersects(
+                    ST_Buffer(
+                        ki.geom::geography,
+                        {$radius} * 1000
+                    )::geometry,
+                    t.geom
+                )
+            )";
         }
 
         $terjangkauExpr = empty($accessConditions)
@@ -59,16 +56,9 @@ class PetaController extends Controller
 
         if (!$hasApplied) {
             $terjangkauExpr = 'NULL';
-        }    
-
-        $statusHaving = '';
-        if ($statusFilter === 'terjangkau') {
-            $statusHaving = "HAVING {$terjangkauExpr}";
-        } elseif ($statusFilter === 'tidak_terjangkau') {
-            $statusHaving = "HAVING NOT ({$terjangkauExpr})";
         }
 
-        // Query kawasan industri dengan analisis dinamis
+        // Semua buffer dihitung langsung menggunakan ST_Buffer().
         $kawasan = DB::select("
             SELECT
                 ki.id,
@@ -82,51 +72,33 @@ class PetaController extends Controller
                 wa.kecamatan,
                 ST_AsGeoJSON(ki.geom) AS geom,
 
-                -- Aksesibilitas per radius (selalu dihitung, untuk detail panel)
+                -- Aksesibilitas pada radius AKTIF (bebas, sesuai input user)
                 EXISTS (
                     SELECT 1 FROM jalan j
-                    WHERE ST_Intersects(bk.buffer_1km, j.geom)
-                ) AS jalan_1km,
-                EXISTS (
-                    SELECT 1 FROM jalan j
-                    WHERE ST_Intersects(bk.buffer_3km, j.geom)
-                ) AS jalan_3km,
-                EXISTS (
-                    SELECT 1 FROM jalan j
-                    WHERE ST_Intersects(bk.buffer_5km, j.geom)
-                ) AS jalan_5km,
-
+                    WHERE ST_Intersects(
+                        ST_Buffer(ki.geom::geography, {$radius} * 1000)::geometry,
+                        j.geom
+                    )
+                ) AS jalan_aktif,
                 EXISTS (
                     SELECT 1 FROM pelabuhan p
-                    WHERE ST_Intersects(bk.buffer_1km, p.geom)
-                ) AS pelabuhan_1km,
+                    WHERE ST_Intersects(
+                        ST_Buffer(ki.geom::geography, {$radius} * 1000)::geometry,
+                        p.geom
+                    )
+                ) AS pelabuhan_aktif,
                 EXISTS (
-                    SELECT 1 FROM pelabuhan p
-                    WHERE ST_Intersects(bk.buffer_3km, p.geom)
-                ) AS pelabuhan_3km,
-                EXISTS (
-                    SELECT 1 FROM pelabuhan p
-                    WHERE ST_Intersects(bk.buffer_5km, p.geom)
-                ) AS pelabuhan_5km,
+                    SELECT 1 FROM bandara b
+                    WHERE ST_Intersects(
+                        ST_Buffer(ki.geom::geography, {$radius} * 1000)::geometry,
+                        b.geom
+                    )
+                ) AS bandara_aktif,
 
-                EXISTS (
-                    SELECT 1 FROM bandara b
-                    WHERE ST_Intersects(bk.buffer_1km, b.geom)
-                ) AS bandara_1km,
-                EXISTS (
-                    SELECT 1 FROM bandara b
-                    WHERE ST_Intersects(bk.buffer_3km, b.geom)
-                ) AS bandara_3km,
-                EXISTS (
-                    SELECT 1 FROM bandara b
-                    WHERE ST_Intersects(bk.buffer_5km, b.geom)
-                ) AS bandara_5km,
-
-                -- Status keterjangkauan berdasarkan parameter aktif
+                -- Status keterjangkauan berdasarkan parameter aktif (radius dinamis dari user)
                 {$terjangkauExpr} AS terjangkau
 
             FROM kawasan_industri ki
-            JOIN buffer_kawasan bk ON ki.id = bk.id
             LEFT JOIN wilayah_administrasi wa ON ki.kode_kec = wa.kode_kec
 
             ORDER BY ki.nama ASC
@@ -142,13 +114,18 @@ class PetaController extends Controller
             );
         }
 
-        // Buffer 
+        // Buffer (layer buffer aktif di peta, radius mengikuti input user)
         $buffer = DB::select("
             SELECT
                 id,
                 nama,
-                ST_AsGeoJSON({$bufferColumn}) AS buffer_aktif
-            FROM buffer_kawasan
+                ST_AsGeoJSON(
+                    ST_Buffer(
+                        geom::geography,
+                        {$radius} * 1000
+                    )::geometry
+                ) AS buffer_aktif
+            FROM kawasan_industri
         ");
 
         // Jalan
@@ -208,7 +185,6 @@ class PetaController extends Controller
                 ki.id,
                 {$terjangkauExpr} AS terjangkau
             FROM kawasan_industri ki
-            JOIN buffer_kawasan bk ON ki.id = bk.id
         ");
         if ($hasApplied) {
             $totalTerjangkau = count(

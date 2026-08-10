@@ -65,6 +65,27 @@
                         <span class="radius-option-text flex-1 text-[0.73rem] font-medium text-[#18172b]">{{ $label }}</span>
                     </label>
                     @endforeach
+
+                    @php
+                        $presetRadii = ['1', '3', '5'];
+                        $isCustomRadius = $hasApplied && $reqRadius !== '' && !in_array($reqRadius, $presetRadii, true);
+                    @endphp
+                    <label class="radius-option {{ $isCustomRadius ? 'active' : '' }} relative flex cursor-pointer items-center gap-2 rounded-[10px] border-[1.5px] border-[#e4e3ea] bg-white px-2.5 py-1.5 transition-all duration-[180ms] hover:border-[#3b5bdb] hover:bg-[#e8edff] [&.active]:border-[#3b5bdb] [&.active]:bg-[#e8edff] [&.active]:shadow-[0_0_0_3px_rgba(59,91,219,0.08)] [&.active_.radius-dot]:border-[#3b5bdb] [&.active_.radius-dot]:bg-[#3b5bdb] [&.active_.radius-dot]:shadow-[inset_0_0_0_2px_#fff]" data-radius="custom" id="radiusCustomOption">
+                        <input class="hidden" type="radio" name="radius" id="radiusCustomRadio" value="{{ $isCustomRadius ? $reqRadius : '' }}" {{ $isCustomRadius ? 'checked' : '' }}>
+                        <div class="radius-dot relative h-3 w-3 shrink-0 rounded-full border-2 border-[#d0cfd8] transition-all duration-[180ms]"></div>
+                        <span class="radius-option-text flex-1 text-[0.73rem] font-medium text-[#18172b]">Custom</span>
+                        <input
+                            type="number"
+                            id="radiusCustomInput"
+                            min="0.001"
+                            step="0.001"
+                            inputmode="decimal"
+                            placeholder="km"
+                            value="{{ $isCustomRadius ? $reqRadius : '' }}"
+                            onclick="event.stopPropagation()"
+                            class="radius-custom-input ml-auto w-14 shrink-0 rounded-[8px] border-[1.5px] border-[#d0cfd8] bg-white px-1.5 py-0.5 text-[0.7rem] font-medium text-[#18172b] transition-colors duration-[180ms] focus:border-[#3b5bdb] focus:outline-none"
+                        >
+                    </label>
                 </div>
             </div>
         </div>
@@ -466,6 +487,8 @@ const bufferStyles = {
     '3': { color: '#4a7fd4', fillColor: '#4a7fd4', fillOpacity: 0.1, weight: 1.5, dashArray: '5,5' },
     '5': { color: '#a0b840', fillColor: '#a0b840', fillOpacity: 0.1, weight: 1.5, dashArray: '5,5' },
 };
+// Fallback untuk radius custom (bukan preset 1/3/5 km)
+const defaultBufferStyle = { color: '#3b5bdb', fillColor: '#3b5bdb', fillOpacity: 0.1, weight: 1.5, dashArray: '5,5' };
 
 function showBuffer(kawasanId) {
     bufferGroup.clearLayers();
@@ -474,7 +497,7 @@ function showBuffer(kawasanId) {
     if (!buf || !buf.buffer_aktif) return;
 
     L.geoJSON(JSON.parse(buf.buffer_aktif), {
-        style: bufferStyles[activeRadius]
+        style: bufferStyles[activeRadius] || defaultBufferStyle
     }).addTo(bufferGroup);
 }
 
@@ -559,9 +582,9 @@ kawasan.forEach(item => {
         highlightMarker(item.id);
 
         const radiusKey = activeRadius;
-        const jalanOk   = item['jalan_'   + radiusKey + 'km'];
-        const pelabOk   = item['pelabuhan_' + radiusKey + 'km'];
-        const bandaraOk = item['bandara_'  + radiusKey + 'km'];
+        const jalanOk   = item.jalan_aktif;
+        const pelabOk   = item.pelabuhan_aktif;
+        const bandaraOk = item.bandara_aktif;
         const isOk      = item.terjangkau;
 
         const badgeClass = isOk ? 'green' : 'red';
@@ -644,9 +667,9 @@ function openDetail(id) {
     const isOk = item.terjangkau;
     const radiusKey = activeRadius;
 
-    const jalanOk      = item[`jalan_${radiusKey}km`];
-    const pelabOk      = item[`pelabuhan_${radiusKey}km`];
-    const bandaraOk    = item[`bandara_${radiusKey}km`];
+    const jalanOk      = item.jalan_aktif;
+    const pelabOk      = item.pelabuhan_aktif;
+    const bandaraOk    = item.bandara_aktif;
 
     const statusBadge = isOk
         ? `<div class="detail-status-badge green">
@@ -745,8 +768,31 @@ document.querySelectorAll('#radiusGroup .radius-option').forEach(opt => {
     opt.addEventListener('click', function() {
         document.querySelectorAll('#radiusGroup .radius-option').forEach(o => o.classList.remove('active'));
         this.classList.add('active');
-        this.querySelector('input[type="radio"]').checked = true;
+        const radio = this.querySelector('input[type="radio"]');
+        radio.checked = true;
+
+        if (this.id === 'radiusCustomOption') {
+            const customInput = document.getElementById('radiusCustomInput');
+            radio.value = customInput.value || '';
+            customInput.focus();
+        }
     });
+});
+
+{{-- Radius Custom: sinkronkan nilai input angka --}}
+const radiusCustomInput = document.getElementById('radiusCustomInput');
+const radiusCustomRadio = document.getElementById('radiusCustomRadio');
+const radiusCustomOption = document.getElementById('radiusCustomOption');
+
+radiusCustomInput.addEventListener('click', function(e) {
+    e.stopPropagation();
+});
+
+radiusCustomInput.addEventListener('input', function() {
+    document.querySelectorAll('#radiusGroup .radius-option').forEach(o => o.classList.remove('active'));
+    radiusCustomOption.classList.add('active');
+    radiusCustomRadio.checked = true;
+    radiusCustomRadio.value = this.value;
 });
 
 {{-- Infrastruktur Checkbox --}}
@@ -777,7 +823,9 @@ document.querySelectorAll('.status-btn').forEach(btn => {
 
 document.getElementById('applyBtn').addEventListener('click', function() {
     const radiusInput = document.querySelector('#radiusGroup input[type="radio"]:checked');
-    const radius = radiusInput ? radiusInput.value : null;
+    let radius = radiusInput ? radiusInput.value : null;
+    const radiusNum = radius !== null ? parseFloat(radius) : NaN;
+    const radiusValid = radius !== null && radius !== '' && !isNaN(radiusNum) && radiusNum >= 0.001;
 
     const infra = [];
     document.querySelectorAll('.infra-item input[type="checkbox"]:checked').forEach(function(cb) {
@@ -787,19 +835,19 @@ document.getElementById('applyBtn').addEventListener('click', function() {
     const status = document.getElementById('hiddenStatus').value;
 
     const missing = [];
-    if (!radius)          missing.push('Radius buffer');
+    if (!radiusValid)        missing.push('Radius buffer');
     if (infra.length === 0) missing.push('Infrastruktur');
     if (!status)          missing.push('Filter status');
 
     if (missing.length > 0) {
         document.getElementById('validasiMsg').textContent =
-            missing.join(', ') + ' belum dipilih.';
+            missing.join(', ') + ' belum dipilih atau tidak valid (radius minimal 0.001 km atau 1 meter).';
         document.getElementById('modalValidasi').classList.remove('hidden');
         return;
     }
 
     const url = new URL(window.location.pathname, window.location.origin);
-    url.searchParams.set('radius', radius);
+    url.searchParams.set('radius', radiusNum);
     infra.forEach(function(i) { url.searchParams.append('infrastruktur[]', i); });
     url.searchParams.set('status', status);
     window.location.href = url.toString();
@@ -811,6 +859,8 @@ document.getElementById('resetBtn').addEventListener('click', function() {
         opt.classList.remove('active');
         opt.querySelector('input[type="radio"]').checked = false;
     });
+    document.getElementById('radiusCustomInput').value = '';
+    document.getElementById('radiusCustomRadio').value = '';
 
     document.querySelectorAll('.infra-item').forEach(function(item) {
         item.classList.remove('active');
@@ -902,7 +952,7 @@ document.getElementById('drawerOverlay').addEventListener('click', function() {
         <div class="overflow-y-auto px-5 py-4 flex flex-col gap-3 [&::-webkit-scrollbar]:w-[3px] [&::-webkit-scrollbar-thumb]:rounded-sm [&::-webkit-scrollbar-thumb]:bg-[#d0cfd8]">
             @php
             $steps = [
-                ['num' => '1', 'text' => 'Pilih <strong>radius buffer</strong> 1 km, 3 km, atau 5 km pada panel Parameter Analisis.'],
+                ['num' => '1', 'text' => 'Pilih <strong>radius buffer</strong> yang tersedia atau masukkan radius sesuai kebutuhan analisis.'],
                 ['num' => '2', 'text' => 'Pilih <strong>infrastruktur pendukung</strong> yang ingin dianalisis. Dapat memilih satu, dua, atau semua infrastruktur, yaitu jalan, pelabuhan, dan bandara.'],
                 ['num' => '3', 'text' => 'Pilih <strong>filter status</strong> untuk menampilkan semua kawasan, kawasan terjangkau, atau kawasan tidak terjangkau.'],
                 ['num' => '4', 'text' => 'Atur <strong>layer peta</strong> yang ingin ditampilkan, seperti kawasan industri, buffer analisis, jalan, pelabuhan, bandara, dan wilayah administrasi.'],

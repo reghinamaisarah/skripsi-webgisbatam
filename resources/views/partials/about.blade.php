@@ -24,7 +24,7 @@
             <div class="mt-7 flex flex-wrap gap-2.5">
                 @foreach ([
                     '26 Kawasan Industri',
-                    'Buffer 1 km, 3 km, dan 5 km',
+                    'Radius Buffer Dinamis',
                     'Analisis Spasial Interaktif',
                 ] as $tag)
                     <span
@@ -61,7 +61,7 @@
             @php
                 $methods = [
                     ['01', 'Pengumpulan Data', 'Data kawasan industri, jalan, pelabuhan, bandara, dan wilayah administrasi Kota Batam.'],
-                    ['02', 'Pembentukan Buffer', 'Sistem membentuk area jangkauan kawasan industri berdasarkan pemilihan radius 1 km, 3 km, atau 5 km.'],
+                    ['02', 'Pembentukan Buffer', 'Sistem membentuk area jangkauan kawasan industri dengan radius buffer yang dapat disesuaikan sesuai kebutuhan analisis.'],
                     ['03', 'Analisis Keterjangkauan', 'Pemeriksaan keterjangkauan kawasan terhadap jalan, pelabuhan, dan bandara sesuai parameter yang dipilih.'],
                     ['04', 'Visualisasi Hasil', 'Penyajian hasil analisis melalui peta interaktif, visualisasi buffer, dan panel ringkasan.'],
                 ];

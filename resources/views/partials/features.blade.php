@@ -45,8 +45,8 @@
                     '<path d="M12 17v4"/><path d="M12 5V3"/><path d="M12 9v3"/><path d="M2.077 18.449A2 2 0 0 0 4 21h16a2 2 0 0 0 1.924-2.55l-4-14A2 2 0 0 0 16 3H8a2 2 0 0 0-1.924 1.45z"/>'
                 ],
                 [
-                    'Buffer Analysis',
-                    'Analisis spasial kawasan industri menggunakan radius buffer 1 km, 3 km, dan 5 km.',
+                    'Analisis Buffer',
+                    'Analisis spasial kawasan industri menggunakan radius buffer yang dapat disesuaikan sesuai kebutuhan analisis.',
                     'delay-200',
                     '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>'
                 ],

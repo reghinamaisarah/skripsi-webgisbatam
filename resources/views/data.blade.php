@@ -19,26 +19,33 @@
 
 @php
     $aksesMap = $aksesMap ?? collect();
+    $radius = $radius ?? 5;
+    $statusFilter = $statusFilter ?? null;
     $total = $kawasan->count();
     $akses = fn($kawasanId, $field) => (bool) data_get($aksesMap->get($kawasanId), $field, false);
-    $jmlJalan     = $kawasan->filter(fn($k) => $akses($k->id, 'jalan_5km'))->count();
-    $jmlPelabuhan = $kawasan->filter(fn($k) => $akses($k->id, 'pelabuhan_5km'))->count();
-    $jmlBandara   = $kawasan->filter(fn($k) => $akses($k->id, 'bandara_5km'))->count();
-    $terjangkauSemua = $kawasan->filter(fn($k) => $akses($k->id, 'jalan_5km') && $akses($k->id, 'pelabuhan_5km') && $akses($k->id, 'bandara_5km'))->count();
-    $tidakSatupun = $kawasan->filter(fn($k) => !$akses($k->id, 'jalan_5km') && !$akses($k->id, 'pelabuhan_5km') && !$akses($k->id, 'bandara_5km'))->count();
+    $jumlahAkses = fn($kawasanId) => (int) data_get($aksesMap->get($kawasanId), 'jumlah_akses', 0);
+    $jmlJalan     = $kawasan->filter(fn($k) => $akses($k->id, 'jalan_terjangkau'))->count();
+    $jmlPelabuhan = $kawasan->filter(fn($k) => $akses($k->id, 'pelabuhan_terjangkau'))->count();
+    $jmlBandara   = $kawasan->filter(fn($k) => $akses($k->id, 'bandara_terjangkau'))->count();
+    $terjangkauSemua = $kawasan->filter(fn($k) => $akses($k->id, 'jalan_terjangkau') && $akses($k->id, 'pelabuhan_terjangkau') && $akses($k->id, 'bandara_terjangkau'))->count();
+    $tidakSatupun = $kawasan->filter(fn($k) => !$akses($k->id, 'jalan_terjangkau') && !$akses($k->id, 'pelabuhan_terjangkau') && !$akses($k->id, 'bandara_terjangkau'))->count();
     $profilKombinasi = [
-        ['chips'=>[['label'=>'Jalan','ya'=>true],['label'=>'Pelabuhan','ya'=>true],['label'=>'Bandara','ya'=>true]],'count'=>$kawasan->filter(fn($k)=> $akses($k->id,'jalan_5km')&& $akses($k->id,'pelabuhan_5km')&& $akses($k->id,'bandara_5km'))->count(),'barClass'=>'bg-[#059669]'],
-        ['chips'=>[['label'=>'Jalan','ya'=>true],['label'=>'Pelabuhan','ya'=>true],['label'=>'Bandara','ya'=>false]],'count'=>$kawasan->filter(fn($k)=> $akses($k->id,'jalan_5km')&& $akses($k->id,'pelabuhan_5km')&&!$akses($k->id,'bandara_5km'))->count(),'barClass'=>'bg-[#0891b2]'],
-        ['chips'=>[['label'=>'Jalan','ya'=>true],['label'=>'Pelabuhan','ya'=>false],['label'=>'Bandara','ya'=>true]],'count'=>$kawasan->filter(fn($k)=> $akses($k->id,'jalan_5km')&&!$akses($k->id,'pelabuhan_5km')&& $akses($k->id,'bandara_5km'))->count(),'barClass'=>'bg-[#7c3aed]'],
-        ['chips'=>[['label'=>'Jalan','ya'=>true],['label'=>'Pelabuhan','ya'=>false],['label'=>'Bandara','ya'=>false]],'count'=>$kawasan->filter(fn($k)=> $akses($k->id,'jalan_5km')&&!$akses($k->id,'pelabuhan_5km')&&!$akses($k->id,'bandara_5km'))->count(),'barClass'=>'bg-[#d97706]'],
-        ['chips'=>[['label'=>'Jalan','ya'=>false],['label'=>'Pelabuhan','ya'=>true],['label'=>'Bandara','ya'=>true]],'count'=>$kawasan->filter(fn($k)=>!$akses($k->id,'jalan_5km')&& $akses($k->id,'pelabuhan_5km')&& $akses($k->id,'bandara_5km'))->count(),'barClass'=>'bg-[#0891b2]'],
-        ['chips'=>[['label'=>'Jalan','ya'=>false],['label'=>'Pelabuhan','ya'=>true],['label'=>'Bandara','ya'=>false]],'count'=>$kawasan->filter(fn($k)=>!$akses($k->id,'jalan_5km')&& $akses($k->id,'pelabuhan_5km')&&!$akses($k->id,'bandara_5km'))->count(),'barClass'=>'bg-[#6b7280]'],
-        ['chips'=>[['label'=>'Jalan','ya'=>false],['label'=>'Pelabuhan','ya'=>false],['label'=>'Bandara','ya'=>true]],'count'=>$kawasan->filter(fn($k)=>!$akses($k->id,'jalan_5km')&&!$akses($k->id,'pelabuhan_5km')&& $akses($k->id,'bandara_5km'))->count(),'barClass'=>'bg-[#6b7280]'],
+        ['chips'=>[['label'=>'Jalan','ya'=>true],['label'=>'Pelabuhan','ya'=>true],['label'=>'Bandara','ya'=>true]],'count'=>$kawasan->filter(fn($k)=> $akses($k->id,'jalan_terjangkau')&& $akses($k->id,'pelabuhan_terjangkau')&& $akses($k->id,'bandara_terjangkau'))->count(),'barClass'=>'bg-[#059669]'],
+        ['chips'=>[['label'=>'Jalan','ya'=>true],['label'=>'Pelabuhan','ya'=>true],['label'=>'Bandara','ya'=>false]],'count'=>$kawasan->filter(fn($k)=> $akses($k->id,'jalan_terjangkau')&& $akses($k->id,'pelabuhan_terjangkau')&&!$akses($k->id,'bandara_terjangkau'))->count(),'barClass'=>'bg-[#0891b2]'],
+        ['chips'=>[['label'=>'Jalan','ya'=>true],['label'=>'Pelabuhan','ya'=>false],['label'=>'Bandara','ya'=>true]],'count'=>$kawasan->filter(fn($k)=> $akses($k->id,'jalan_terjangkau')&&!$akses($k->id,'pelabuhan_terjangkau')&& $akses($k->id,'bandara_terjangkau'))->count(),'barClass'=>'bg-[#7c3aed]'],
+        ['chips'=>[['label'=>'Jalan','ya'=>true],['label'=>'Pelabuhan','ya'=>false],['label'=>'Bandara','ya'=>false]],'count'=>$kawasan->filter(fn($k)=> $akses($k->id,'jalan_terjangkau')&&!$akses($k->id,'pelabuhan_terjangkau')&&!$akses($k->id,'bandara_terjangkau'))->count(),'barClass'=>'bg-[#d97706]'],
+        ['chips'=>[['label'=>'Jalan','ya'=>false],['label'=>'Pelabuhan','ya'=>true],['label'=>'Bandara','ya'=>true]],'count'=>$kawasan->filter(fn($k)=>!$akses($k->id,'jalan_terjangkau')&& $akses($k->id,'pelabuhan_terjangkau')&& $akses($k->id,'bandara_terjangkau'))->count(),'barClass'=>'bg-[#0891b2]'],
+        ['chips'=>[['label'=>'Jalan','ya'=>false],['label'=>'Pelabuhan','ya'=>true],['label'=>'Bandara','ya'=>false]],'count'=>$kawasan->filter(fn($k)=>!$akses($k->id,'jalan_terjangkau')&& $akses($k->id,'pelabuhan_terjangkau')&&!$akses($k->id,'bandara_terjangkau'))->count(),'barClass'=>'bg-[#6b7280]'],
+        ['chips'=>[['label'=>'Jalan','ya'=>false],['label'=>'Pelabuhan','ya'=>false],['label'=>'Bandara','ya'=>true]],'count'=>$kawasan->filter(fn($k)=>!$akses($k->id,'jalan_terjangkau')&&!$akses($k->id,'pelabuhan_terjangkau')&& $akses($k->id,'bandara_terjangkau'))->count(),'barClass'=>'bg-[#6b7280]'],
         ['chips'=>[['label'=>'Jalan','ya'=>false],['label'=>'Pelabuhan','ya'=>false],['label'=>'Bandara','ya'=>false]],'count'=>$tidakSatupun,'barClass'=>'bg-[#dc2626]'],
     ];
     $profilAktif = collect($profilKombinasi)->filter(fn($p) => $p['count'] > 0)->sortByDesc('count')->values();
-    $kawasanBaik = $kawasan->filter(function($k) use ($akses) { $c = (int)$akses($k->id,'jalan_5km') + (int)$akses($k->id,'pelabuhan_5km') + (int)$akses($k->id,'bandara_5km'); return $c >= 2; })->sortByDesc(fn($k) => (int)$akses($k->id,'jalan_5km') + (int)$akses($k->id,'pelabuhan_5km') + (int)$akses($k->id,'bandara_5km'))->take(5)->values();
-    $kawasanKurang = $kawasan->filter(function($k) use ($akses) { $c = (int)$akses($k->id,'jalan_5km') + (int)$akses($k->id,'pelabuhan_5km') + (int)$akses($k->id,'bandara_5km'); return $c <= 1; })->sortBy(fn($k) => (int)$akses($k->id,'jalan_5km') + (int)$akses($k->id,'pelabuhan_5km') + (int)$akses($k->id,'bandara_5km'))->take(5)->values();
+
+    // Pakai status_akses/jumlah_akses yang sudah dihitung controller (ambang ≥2 infrastruktur = baik)
+    $kawasanBaik = $kawasan->filter(fn($k) => data_get($aksesMap->get($k->id), 'status_akses') === 'baik')
+        ->sortByDesc(fn($k) => $jumlahAkses($k->id))->take(5)->values();
+    $kawasanKurang = $kawasan->filter(fn($k) => data_get($aksesMap->get($k->id), 'status_akses') === 'kurang')
+        ->sortBy(fn($k) => $jumlahAkses($k->id))->take(5)->values();
 
     $statCardCls = 'bg-white border border-[#ececec] rounded-xl px-5 py-4 flex items-center gap-[0.9rem] shadow-[0_1px_3px_rgba(0,0,0,0.03)]';
     $insightCardCls = 'bg-white border border-[#ececec] rounded-xl px-5 pt-[1.1rem] pb-5 flex flex-col';
@@ -170,43 +177,106 @@
             @endif
         </div>
 
-        @php
-            $rankCards = [
-                ['Terjangkau Baik', 'text-[#059669]', 'stroke-[#059669]', '<polyline points="20 6 9 17 4 12"/>', $kawasanBaik, 'Tidak ada kawasan dengan akses ≥2 infrastruktur.', 'Terjangkau ≥2 infrastruktur dalam radius 5 km. Maks. 5 kawasan.'],
-                ['Terjangkau Kurang', 'text-[#dc2626]', 'stroke-[#dc2626]', '<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>', $kawasanKurang, 'Tidak ada kawasan dengan akses ≤1 infrastruktur.', 'Terjangkau ≤1 infrastruktur dalam radius 5 km. Maks. 5 kawasan.'],
-            ];
-        @endphp
-        @foreach ($rankCards as [$title, $textClass, $strokeClass, $svg, $list, $emptyMsg, $footMsg])
-        <div class="{{ $insightCardCls }}">
-            <div class="flex items-center gap-2 text-[0.85rem] font-semibold mb-4 {{ $textClass }}">
-                <svg viewBox="0 0 24 24" class="w-4 h-4 fill-none [stroke-width:2] [stroke-linecap:round] [stroke-linejoin:round] {{ $strokeClass }}">{!! $svg !!}</svg>
-                {{ $title }}
-            </div>
-            @if($total === 0)
-                <div class="{{ $insightEmptyCls }}">Belum ada data kawasan</div>
-            @elseif($list->isEmpty())
-                <div class="{{ $insightEmptyCls }}">{{ $emptyMsg }}</div>
-            @else
-                <div class="flex flex-col gap-2">
-                    @foreach($list as $k)
-                    <div class="flex items-center gap-[0.6rem] px-[0.65rem] py-2 rounded-lg border border-[#f3f4f6] bg-[#fafafa]">
-                        <div class="flex-1 min-w-0">
-                            <div class="text-[0.73rem] font-medium text-[#111827] whitespace-nowrap overflow-hidden text-ellipsis">{{ $k->nama }}</div>
-                            <div class="flex gap-[3px] mt-[3px] flex-wrap">
-                                <span class="{{ $chipBase }} {{ $akses($k->id,'jalan_5km') ? 'bg-[#d1fae5] text-[#059669]' : 'bg-[#fee2e2] text-[#dc2626]' }}">Jalan</span>
-                                <span class="{{ $chipBase }} {{ $akses($k->id,'pelabuhan_5km') ? 'bg-[#d1fae5] text-[#059669]' : 'bg-[#fee2e2] text-[#dc2626]' }}">Pelabuhan</span>
-                                <span class="{{ $chipBase }} {{ $akses($k->id,'bandara_5km') ? 'bg-[#d1fae5] text-[#059669]' : 'bg-[#fee2e2] text-[#dc2626]' }}">Bandara</span>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-                <p class="text-[0.68rem] text-[#9ca3af] mt-[0.85rem] pt-3 border-t border-[#f3f4f6]">{{ $footMsg }}</p>
-            @endif
-        </div>
-        @endforeach
-    </div>
+        {{-- Peringkat Aksesibilitas: Terjangkau Baik & Kurang, dengan filter khusus buat 2 card ini --}}
+        <div class="bg-white border border-[#ececec] rounded-xl overflow-hidden flex flex-col sm:col-span-2 xl:col-span-2">
+            <div class="flex items-center justify-between flex-wrap gap-2 px-5 pt-[1.1rem] pb-3 border-b border-[#f3f4f6]">
+                <div class="text-[0.85rem] font-semibold text-[#111827]">Peringkat Aksesibilitas</div>
 
+                <form method="GET" action="{{ url()->current() }}" class="flex flex-wrap items-center gap-1.5">
+                    <select id="radiusSelect" onchange="handleRadiusChange()"
+                            class="text-[0.68rem] px-2 py-1 border border-[#e5e7eb] rounded-md bg-[#fafafa] text-[#374151] outline-none focus:border-[#233d59]">
+                        @foreach ([1, 3, 5] as $r)
+                            <option value="{{ $r }}" @selected((float) $radius === (float) $r)>Radius {{ $r }} km</option>
+                        @endforeach
+                        <option value="custom" @selected(!in_array((float) $radius, [1.0, 3.0, 5.0], true))>Custom</option>
+                    </select>
+
+                    <input type="number" id="radiusCustomInput" min="0.001" step="0.001"
+                           value="{{ !in_array((float) $radius, [1.0, 3.0, 5.0], true) ? $radius : '' }}"
+                           placeholder="km" oninput="document.getElementById('radiusHidden').value = this.value"
+                           class="w-[60px] text-[0.68rem] px-2 py-1 border border-[#e5e7eb] rounded-md bg-[#fafafa] text-[#374151] outline-none focus:border-[#233d59] {{ !in_array((float) $radius, [1.0, 3.0, 5.0], true) ? '' : 'hidden' }}">
+
+                    <input type="hidden" id="radiusHidden" name="radius" value="{{ $radius }}">
+
+                    <select id="status" name="status" onchange="this.form.submit()"
+                            class="text-[0.68rem] px-2 py-1 border border-[#e5e7eb] rounded-md bg-[#fafafa] text-[#374151] outline-none focus:border-[#233d59]">
+                        <option value="" @selected(!$statusFilter)>Semua Status</option>
+                        <option value="baik" @selected($statusFilter === 'baik')>Terjangkau Baik</option>
+                        <option value="kurang" @selected($statusFilter === 'kurang')>Terjangkau Kurang</option>
+                    </select>
+
+                    <button type="submit" class="text-[0.68rem] px-2.5 py-1 rounded-md bg-[#1a3a8f] text-white font-medium hover:bg-[#152f73] transition-colors">
+                        Terapkan
+                    </button>
+
+                    @if($statusFilter || (float) $radius !== 5.0)
+                        <a href="{{ url()->current() }}" title="Reset filter"
+                        class="flex items-center justify-center w-[26px] h-[26px] rounded-md border border-[#e5e7eb] bg-[#fafafa] text-[#6b7280] hover:bg-[#f3f4f6] hover:text-[#374151] transition-colors">
+                            <svg viewBox="0 0 24 24" class="w-[13px] h-[13px] fill-none [stroke-width:2] [stroke-linecap:round] [stroke-linejoin:round] stroke-current">
+                                <path d="M3 12a9 9 0 1 0 2.64-6.36"/>
+                                <path d="M3 4v5h5"/>
+                            </svg>
+                        </a>
+                    @endif
+                </form>
+            </div>
+
+            @php
+                $rankCards = [
+                    ['Terjangkau Baik', 'text-[#059669]', 'stroke-[#059669]', '<polyline points="20 6 9 17 4 12"/>', $kawasanBaik, 'Tidak ada kawasan dengan akses ≥2 infrastruktur.', "Terjangkau ≥2 infrastruktur dalam radius {$radius} km. Maks. 5 kawasan."],
+                    ['Terjangkau Kurang', 'text-[#dc2626]', 'stroke-[#dc2626]', '<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>', $kawasanKurang, 'Tidak ada kawasan dengan akses ≤1 infrastruktur.', "Terjangkau ≤1 infrastruktur dalam radius {$radius} km. Maks. 5 kawasan."],
+                ];
+            @endphp
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 px-5 pt-4 pb-5">
+                @foreach ($rankCards as [$title, $textClass, $strokeClass, $svg, $list, $emptyMsg, $footMsg])
+                <div class="flex flex-col">
+                    <div class="flex items-center gap-2 text-[0.8rem] font-semibold mb-3 {{ $textClass }}">
+                        <svg viewBox="0 0 24 24" class="w-4 h-4 fill-none [stroke-width:2] [stroke-linecap:round] [stroke-linejoin:round] {{ $strokeClass }}">{!! $svg !!}</svg>
+                        {{ $title }}
+                    </div>
+                    @if($total === 0)
+                        <div class="{{ $insightEmptyCls }}">Belum ada data kawasan</div>
+                    @elseif($list->isEmpty())
+                        <div class="{{ $insightEmptyCls }}">{{ $emptyMsg }}</div>
+                    @else
+                        <div class="flex flex-col gap-2">
+                            @foreach($list as $k)
+                            <div class="flex items-center gap-[0.6rem] px-[0.65rem] py-2 rounded-lg border border-[#f3f4f6] bg-[#fafafa]">
+                                <div class="flex-1 min-w-0">
+                                    <div class="text-[0.73rem] font-medium text-[#111827] whitespace-nowrap overflow-hidden text-ellipsis">{{ $k->nama }}</div>
+                                    <div class="flex gap-[3px] mt-[3px] flex-wrap">
+                                        <span class="{{ $chipBase }} {{ $akses($k->id,'jalan_terjangkau') ? 'bg-[#d1fae5] text-[#059669]' : 'bg-[#fee2e2] text-[#dc2626]' }}">Jalan</span>
+                                        <span class="{{ $chipBase }} {{ $akses($k->id,'pelabuhan_terjangkau') ? 'bg-[#d1fae5] text-[#059669]' : 'bg-[#fee2e2] text-[#dc2626]' }}">Pelabuhan</span>
+                                        <span class="{{ $chipBase }} {{ $akses($k->id,'bandara_terjangkau') ? 'bg-[#d1fae5] text-[#059669]' : 'bg-[#fee2e2] text-[#dc2626]' }}">Bandara</span>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                        <p class="text-[0.68rem] text-[#9ca3af] mt-[0.85rem] pt-3 border-t border-[#f3f4f6]">{{ $footMsg }}</p>
+                    @endif
+                </div>
+                @endforeach
+            </div>
+        </div>
+        <script>
+            function handleRadiusChange() {
+                const select = document.getElementById('radiusSelect');
+                const customInput = document.getElementById('radiusCustomInput');
+                const hidden = document.getElementById('radiusHidden');
+
+                if (select.value === 'custom') {
+                    customInput.classList.remove('hidden');
+                    customInput.focus();
+                    hidden.value = customInput.value || '5';
+                } else {
+                    customInput.classList.add('hidden');
+                    hidden.value = select.value;
+                    select.closest('form').submit();
+                }
+            }
+        </script>
+    </div>
     {{-- Tabs + Table --}}
     <div class="bg-white border border-[#e5e7eb] rounded-[10px] shadow-[0_1px_2px_rgba(0,0,0,0.03)] overflow-hidden">
         <div class="flex items-center gap-1 px-4 pt-3 border-b border-[#f0f0f0] overflow-x-auto scrollbar-none [-webkit-overflow-scrolling:touch]">
