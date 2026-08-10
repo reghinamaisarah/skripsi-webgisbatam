@@ -3,9 +3,10 @@
     class="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-8 pb-16 pt-28 text-center font-['Plus_Jakarta_Sans']"
 >
     <img
-        src="{{ asset('images/bg-hero.png') }}"
+        src="{{ asset('images/bg-hero.webp') }}"
         alt=""
         aria-hidden="true"
+        fetchpriority="high"
         class="absolute inset-0 h-full w-full object-cover object-center"
     >
 
